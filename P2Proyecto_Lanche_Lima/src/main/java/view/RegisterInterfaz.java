@@ -147,6 +147,11 @@ public class RegisterInterfaz extends javax.swing.JFrame {
 
         pfConfirmPassword.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         pfConfirmPassword.setForeground(new java.awt.Color(61, 61, 61));
+        pfConfirmPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pfConfirmPasswordActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(61, 61, 61));
@@ -310,7 +315,6 @@ public class RegisterInterfaz extends javax.swing.JFrame {
         jLabel1.setText("Register");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ismael Lima\\Documents\\GitHub\\SEGUNDO SEMESTRE - POO\\SEGUNDO_SEMESTRE-POO\\SEGUNDO_PARCIAL\\P2Lab2LimaAngel\\src\\main\\java\\View\\login_11213101.png")); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(50, 50));
 
         btnSignIn.setBackground(new java.awt.Color(255, 250, 236));
@@ -399,6 +403,10 @@ public class RegisterInterfaz extends javax.swing.JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void pfConfirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfConfirmPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pfConfirmPasswordActionPerformed
 
     /**
      * @param args the command line arguments
