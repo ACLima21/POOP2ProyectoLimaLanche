@@ -29,16 +29,16 @@ public class WorkerInterfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbClients = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        btnModify = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbWorkers = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -47,10 +47,10 @@ public class WorkerInterfaz extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 236));
 
-        jTable1.setBackground(new java.awt.Color(245, 236, 213));
-        jTable1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(61, 61, 61));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbClients.setBackground(new java.awt.Color(245, 236, 213));
+        tbClients.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tbClients.setForeground(new java.awt.Color(61, 61, 61));
+        tbClients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -61,47 +61,47 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                 "Usuario", "Teléfono", "Habitaciones", "Fecha de entrada", "Fecha de salida"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(36);
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Habitaciones");
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(42);
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Fecha de entrada");
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(42);
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Fecha de salida");
+        jScrollPane1.setViewportView(tbClients);
+        if (tbClients.getColumnModel().getColumnCount() > 0) {
+            tbClients.getColumnModel().getColumn(1).setPreferredWidth(36);
+            tbClients.getColumnModel().getColumn(2).setHeaderValue("Habitaciones");
+            tbClients.getColumnModel().getColumn(3).setPreferredWidth(42);
+            tbClients.getColumnModel().getColumn(3).setHeaderValue("Fecha de entrada");
+            tbClients.getColumnModel().getColumn(4).setPreferredWidth(42);
+            tbClients.getColumnModel().getColumn(4).setHeaderValue("Fecha de salida");
         }
 
         jPanel2.setBackground(new java.awt.Color(245, 236, 213));
 
-        jButton4.setBackground(new java.awt.Color(87, 142, 126));
-        jButton4.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 250, 236));
-        jButton4.setText("Agregar");
+        btnAdd.setBackground(new java.awt.Color(87, 142, 126));
+        btnAdd.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 250, 236));
+        btnAdd.setText("Agregar");
 
-        jButton5.setBackground(new java.awt.Color(61, 61, 61));
-        jButton5.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 250, 236));
-        jButton5.setText("Cerrar sesión");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setBackground(new java.awt.Color(61, 61, 61));
+        btnLogout.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 250, 236));
+        btnLogout.setText("Cerrar sesión");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(87, 142, 126));
-        jButton6.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 250, 236));
-        jButton6.setText("Buscar");
+        btnSearch.setBackground(new java.awt.Color(87, 142, 126));
+        btnSearch.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(255, 250, 236));
+        btnSearch.setText("Buscar");
 
-        jButton7.setBackground(new java.awt.Color(87, 142, 126));
-        jButton7.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 250, 236));
-        jButton7.setText("Modificar");
+        btnModify.setBackground(new java.awt.Color(87, 142, 126));
+        btnModify.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnModify.setForeground(new java.awt.Color(255, 250, 236));
+        btnModify.setText("Modificar");
 
-        jButton8.setBackground(new java.awt.Color(87, 142, 126));
-        jButton8.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 250, 236));
-        jButton8.setText("Eliminar");
+        btnDelete.setBackground(new java.awt.Color(87, 142, 126));
+        btnDelete.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 250, 236));
+        btnDelete.setText("Eliminar");
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(61, 61, 61));
@@ -115,11 +115,11 @@ public class WorkerInterfaz extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -132,22 +132,22 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addComponent(jButton4)
+                .addComponent(btnAdd)
                 .addGap(50, 50, 50)
-                .addComponent(jButton6)
+                .addComponent(btnSearch)
                 .addGap(50, 50, 50)
-                .addComponent(jButton7)
+                .addComponent(btnModify)
                 .addGap(50, 50, 50)
-                .addComponent(jButton8)
+                .addComponent(btnDelete)
                 .addGap(50, 50, 50)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        jTable2.setBackground(new java.awt.Color(245, 236, 213));
-        jTable2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTable2.setForeground(new java.awt.Color(61, 61, 61));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbWorkers.setBackground(new java.awt.Color(245, 236, 213));
+        tbWorkers.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tbWorkers.setForeground(new java.awt.Color(61, 61, 61));
+        tbWorkers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -158,9 +158,9 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                 "Usuario", "Nombres Completos", "Teléfono", "ID Card"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(36);
+        jScrollPane2.setViewportView(tbWorkers);
+        if (tbWorkers.getColumnModel().getColumnCount() > 0) {
+            tbWorkers.getColumnModel().getColumn(2).setPreferredWidth(36);
         }
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
@@ -225,9 +225,9 @@ public class WorkerInterfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,11 +265,11 @@ public class WorkerInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    public javax.swing.JButton btnAdd;
+    public javax.swing.JButton btnDelete;
+    public javax.swing.JButton btnLogout;
+    public javax.swing.JButton btnModify;
+    public javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -277,7 +277,7 @@ public class WorkerInterfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    public javax.swing.JTable tbClients;
+    public javax.swing.JTable tbWorkers;
     // End of variables declaration//GEN-END:variables
 }
