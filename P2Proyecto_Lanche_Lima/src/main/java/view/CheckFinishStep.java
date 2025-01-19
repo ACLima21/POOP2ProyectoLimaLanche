@@ -29,25 +29,25 @@ public class CheckFinishStep extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbClients = new javax.swing.JTable();
+        tbReservationResume = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
+        btnConfirmReservation = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbTitleForReservation = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 236));
 
-        tbClients.setBackground(new java.awt.Color(245, 236, 213));
-        tbClients.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        tbClients.setForeground(new java.awt.Color(61, 61, 61));
-        tbClients.setModel(new javax.swing.table.DefaultTableModel(
+        tbReservationResume.setBackground(new java.awt.Color(245, 236, 213));
+        tbReservationResume.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tbReservationResume.setForeground(new java.awt.Color(61, 61, 61));
+        tbReservationResume.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -58,18 +58,18 @@ public class CheckFinishStep extends javax.swing.JFrame {
                 "Tipo", "Capacidad", "Precio por noche", "Fecha de entrada", "Fecha de salida", "Costo total"
             }
         ));
-        jScrollPane1.setViewportView(tbClients);
-        if (tbClients.getColumnModel().getColumnCount() > 0) {
-            tbClients.getColumnModel().getColumn(3).setPreferredWidth(42);
-            tbClients.getColumnModel().getColumn(4).setPreferredWidth(42);
+        jScrollPane1.setViewportView(tbReservationResume);
+        if (tbReservationResume.getColumnModel().getColumnCount() > 0) {
+            tbReservationResume.getColumnModel().getColumn(3).setPreferredWidth(42);
+            tbReservationResume.getColumnModel().getColumn(4).setPreferredWidth(42);
         }
 
         jPanel2.setBackground(new java.awt.Color(245, 236, 213));
 
-        btnAdd.setBackground(new java.awt.Color(87, 142, 126));
-        btnAdd.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(255, 250, 236));
-        btnAdd.setText("Agregar");
+        btnConfirmReservation.setBackground(new java.awt.Color(87, 142, 126));
+        btnConfirmReservation.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnConfirmReservation.setForeground(new java.awt.Color(255, 250, 236));
+        btnConfirmReservation.setText("Confirmar");
 
         btnLogout.setBackground(new java.awt.Color(61, 61, 61));
         btnLogout.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -108,7 +108,7 @@ public class CheckFinishStep extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConfirmReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,22 +125,22 @@ public class CheckFinishStep extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addComponent(btnAdd)
-                .addGap(50, 50, 50)
+                .addComponent(btnConfirmReservation)
+                .addGap(24, 24, 24)
                 .addComponent(btnSearch)
-                .addGap(50, 50, 50)
+                .addGap(24, 24, 24)
                 .addComponent(btnModify)
-                .addGap(50, 50, 50)
+                .addGap(24, 24, 24)
                 .addComponent(btnDelete)
-                .addGap(50, 50, 50)
+                .addGap(24, 24, 24)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
-        jLabel2.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(61, 61, 61));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Resumen de la reserva - *Nombre del usuario*");
+        lbTitleForReservation.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        lbTitleForReservation.setForeground(new java.awt.Color(61, 61, 61));
+        lbTitleForReservation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTitleForReservation.setText("Resumen de la reserva - *Nombre del usuario*");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,7 +151,7 @@ public class CheckFinishStep extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbTitleForReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
@@ -159,13 +159,13 @@ public class CheckFinishStep extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbTitleForReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
-                .addGap(24, 24, 24))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,16 +229,16 @@ public class CheckFinishStep extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAdd;
+    public javax.swing.JButton btnConfirmReservation;
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnLogout;
     public javax.swing.JButton btnModify;
     public javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tbClients;
+    private javax.swing.JLabel lbTitleForReservation;
+    public javax.swing.JTable tbReservationResume;
     // End of variables declaration//GEN-END:variables
 }

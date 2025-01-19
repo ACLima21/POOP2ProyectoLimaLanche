@@ -9,7 +9,7 @@ public class WorkerController implements ActionListener {
 
     public WorkerController(CheckFinishStep view) {
         this.view = view;
-        this.view.btnAdd.addActionListener(this);
+        this.view.btnConfirmReservation.addActionListener(this);
         this.view.btnSearch.addActionListener(this);
         this.view.btnModify.addActionListener(this);
         this.view.btnDelete.addActionListener(this);
@@ -41,7 +41,7 @@ public class WorkerController implements ActionListener {
     
       @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == view.btnAdd) {
+        if (e.getSource() == view.btnConfirmReservation) {
             addWorker();
         } else if (e.getSource() == view.btnSearch) {
             searchWorker();
