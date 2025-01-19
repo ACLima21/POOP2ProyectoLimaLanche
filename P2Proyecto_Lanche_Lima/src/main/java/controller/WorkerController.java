@@ -1,13 +1,13 @@
 package controller;
 
-import view.WorkerInterfaz;
+import view.CheckFinishStep;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WorkerController implements ActionListener {
-    private WorkerInterfaz view;
+    private CheckFinishStep view;
 
-    public WorkerController(WorkerInterfaz view) {
+    public WorkerController(CheckFinishStep view) {
         this.view = view;
         this.view.btnAdd.addActionListener(this);
         this.view.btnSearch.addActionListener(this);

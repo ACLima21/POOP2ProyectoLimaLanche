@@ -8,12 +8,12 @@ package view;
  *
  * @author Ismael Lima
  */
-public class WorkerInterfaz extends javax.swing.JFrame {
+public class CheckFinishStep extends javax.swing.JFrame {
 
     /**
      * Creates new form WorkerInterfaz
      */
-    public WorkerInterfaz() {
+    public CheckFinishStep() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -37,10 +37,7 @@ public class WorkerInterfaz extends javax.swing.JFrame {
         btnModify = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbWorkers = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -52,23 +49,19 @@ public class WorkerInterfaz extends javax.swing.JFrame {
         tbClients.setForeground(new java.awt.Color(61, 61, 61));
         tbClients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Usuario", "Teléfono", "Habitaciones", "Fecha de entrada", "Fecha de salida"
+                "Tipo", "Capacidad", "Precio por noche", "Fecha de entrada", "Fecha de salida", "Costo total"
             }
         ));
         jScrollPane1.setViewportView(tbClients);
         if (tbClients.getColumnModel().getColumnCount() > 0) {
-            tbClients.getColumnModel().getColumn(1).setPreferredWidth(36);
-            tbClients.getColumnModel().getColumn(2).setHeaderValue("Habitaciones");
             tbClients.getColumnModel().getColumn(3).setPreferredWidth(42);
-            tbClients.getColumnModel().getColumn(3).setHeaderValue("Fecha de entrada");
             tbClients.getColumnModel().getColumn(4).setPreferredWidth(42);
-            tbClients.getColumnModel().getColumn(4).setHeaderValue("Fecha de salida");
         }
 
         jPanel2.setBackground(new java.awt.Color(245, 236, 213));
@@ -144,34 +137,10 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        tbWorkers.setBackground(new java.awt.Color(245, 236, 213));
-        tbWorkers.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        tbWorkers.setForeground(new java.awt.Color(61, 61, 61));
-        tbWorkers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Usuario", "Nombres Completos", "Teléfono", "ID Card"
-            }
-        ));
-        jScrollPane2.setViewportView(tbWorkers);
-        if (tbWorkers.getColumnModel().getColumnCount() > 0) {
-            tbWorkers.getColumnModel().getColumn(2).setPreferredWidth(36);
-        }
-
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(61, 61, 61));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Tabla de Clientes");
-
-        jLabel3.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(61, 61, 61));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Tabla de Empleados");
+        jLabel2.setText("Resumen de la reserva - *Nombre del usuario*");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -183,9 +152,7 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,11 +164,7 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1)))
                 .addGap(24, 24, 24))
         );
 
@@ -246,20 +209,21 @@ public class WorkerInterfaz extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WorkerInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckFinishStep.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WorkerInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckFinishStep.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WorkerInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckFinishStep.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WorkerInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckFinishStep.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WorkerInterfaz().setVisible(true);
+                new CheckFinishStep().setVisible(true);
             }
         });
     }
@@ -272,12 +236,9 @@ public class WorkerInterfaz extends javax.swing.JFrame {
     public javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tbClients;
-    public javax.swing.JTable tbWorkers;
     // End of variables declaration//GEN-END:variables
 }
