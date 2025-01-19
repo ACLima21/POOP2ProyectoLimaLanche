@@ -412,7 +412,7 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
     public javax.swing.JButton btnLogin;
     public javax.swing.JButton btnRoomDetails;
     public javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> cbGuests;
+    public javax.swing.JComboBox<String> cbGuests;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -427,7 +427,7 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel lbErrorCheckInDate;
     public javax.swing.JLabel lbErrorCheckOutDate;
-    private javax.swing.JTable tbRoomInformation;
+    public javax.swing.JTable tbRoomInformation;
     public javax.swing.JTextField tfCheckInDate_Day;
     public javax.swing.JTextField tfCheckInDate_Month;
     public javax.swing.JTextField tfCheckInDate_Year;

@@ -409,7 +409,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGetBack;
-    private javax.swing.JButton btnMoreInformation;
+    public javax.swing.JButton btnMoreInformation;
     public javax.swing.JButton btnWantIt;
     public javax.swing.JCheckBox cbBreakfast;
     public javax.swing.JCheckBox cbDinner;
@@ -426,12 +426,12 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lbAvailability;
-    private javax.swing.JLabel lbCapacity;
-    private javax.swing.JLabel lbPricePerNight;
+    public javax.swing.JLabel lbAvailability;
+    public javax.swing.JLabel lbCapacity;
+    public javax.swing.JLabel lbPricePerNight;
     private javax.swing.JLabel lbRoomName;
-    private javax.swing.JLabel lbRoomSize;
-    private javax.swing.JLabel lbRoomType;
-    private javax.swing.JLabel lbServicesIncluded;
+    public javax.swing.JLabel lbRoomSize;
+    public javax.swing.JLabel lbRoomType;
+    public javax.swing.JLabel lbServicesIncluded;
     // End of variables declaration//GEN-END:variables
 }
