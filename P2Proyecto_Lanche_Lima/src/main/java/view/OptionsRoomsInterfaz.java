@@ -28,7 +28,7 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbGuests = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tfCheckInDate_Day = new javax.swing.JTextField();
@@ -38,16 +38,18 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         tfCheckInDate_Year = new javax.swing.JTextField();
         lbErrorCheckInDate = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tfCheckInDate_Day1 = new javax.swing.JTextField();
-        lbErrorCheckInDate1 = new javax.swing.JLabel();
+        tfCheckOutDate_Day = new javax.swing.JTextField();
+        lbErrorCheckOutDate = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        tfCheckInDate_Month1 = new javax.swing.JTextField();
+        tfCheckOutDate_Month = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        tfCheckInDate_Year1 = new javax.swing.JTextField();
-        btnReserve = new javax.swing.JButton();
+        tfCheckOutDate_Year = new javax.swing.JTextField();
+        btnLogin = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbRoomInformation = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
+        btnRoomDetails = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,8 +58,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 250, 236));
 
-        jComboBox1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbGuests.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        cbGuests.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Huésped", "2 Huéspedes", "3 Huéspedes. 4 Huéspedes. 5 Huéspedes" }));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel1.setText("Huéspedes");
@@ -112,31 +114,31 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(61, 61, 61));
         jLabel5.setText("Fecha de salida");
 
-        tfCheckInDate_Day1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckInDate_Day1.setForeground(new java.awt.Color(204, 204, 204));
-        tfCheckInDate_Day1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckInDate_Day1.setText("00");
-        tfCheckInDate_Day1.addActionListener(new java.awt.event.ActionListener() {
+        tfCheckOutDate_Day.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        tfCheckOutDate_Day.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckOutDate_Day.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCheckOutDate_Day.setText("00");
+        tfCheckOutDate_Day.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCheckInDate_Day1ActionPerformed(evt);
+                tfCheckOutDate_DayActionPerformed(evt);
             }
         });
 
-        lbErrorCheckInDate1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        lbErrorCheckInDate1.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        lbErrorCheckInDate1.setText("Error, escriba una fecha válida.");
+        lbErrorCheckOutDate.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lbErrorCheckOutDate.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        lbErrorCheckOutDate.setText("Error, escriba una fecha válida.");
 
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(61, 61, 61));
         jLabel8.setText("/");
 
-        tfCheckInDate_Month1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckInDate_Month1.setForeground(new java.awt.Color(204, 204, 204));
-        tfCheckInDate_Month1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckInDate_Month1.setText("00");
-        tfCheckInDate_Month1.addActionListener(new java.awt.event.ActionListener() {
+        tfCheckOutDate_Month.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        tfCheckOutDate_Month.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckOutDate_Month.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCheckOutDate_Month.setText("00");
+        tfCheckOutDate_Month.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCheckInDate_Month1ActionPerformed(evt);
+                tfCheckOutDate_MonthActionPerformed(evt);
             }
         });
 
@@ -144,20 +146,28 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(61, 61, 61));
         jLabel9.setText("/");
 
-        tfCheckInDate_Year1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckInDate_Year1.setForeground(new java.awt.Color(204, 204, 204));
-        tfCheckInDate_Year1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckInDate_Year1.setText("0000");
-        tfCheckInDate_Year1.addActionListener(new java.awt.event.ActionListener() {
+        tfCheckOutDate_Year.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        tfCheckOutDate_Year.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckOutDate_Year.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCheckOutDate_Year.setText("0000");
+        tfCheckOutDate_Year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCheckInDate_Year1ActionPerformed(evt);
+                tfCheckOutDate_YearActionPerformed(evt);
             }
         });
 
-        btnReserve.setBackground(new java.awt.Color(87, 142, 126));
-        btnReserve.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnReserve.setForeground(new java.awt.Color(255, 250, 236));
-        btnReserve.setText("Buscar");
+        btnLogin.setBackground(new java.awt.Color(245, 236, 213));
+        btnLogin.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(61, 61, 61));
+        btnLogin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ismael Lima\\Documents\\GitHub\\SEGUNDO SEMESTRE - POO\\POOP2ProyectoLimaLanche\\P2Proyecto_Lanche_Lima\\src\\main\\java\\icons\\login.png")); // NOI18N
+        btnLogin.setText("Iniciar sesión");
+        btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogin.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,36 +176,38 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbErrorCheckInDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbErrorCheckInDate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(tfCheckInDate_Day, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel6)
-                                .addGap(3, 3, 3)
-                                .addComponent(tfCheckInDate_Month, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel7)
-                                .addGap(3, 3, 3)
-                                .addComponent(tfCheckInDate_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(tfCheckInDate_Day1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel8)
-                                .addGap(3, 3, 3)
-                                .addComponent(tfCheckInDate_Month1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel9)
-                                .addGap(3, 3, 3)
-                                .addComponent(tfCheckInDate_Year1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnReserve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(tfCheckInDate_Day, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel6)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(tfCheckInDate_Month, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel7)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(tfCheckInDate_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(tfCheckOutDate_Day, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel8)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(tfCheckOutDate_Month, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel9)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(tfCheckOutDate_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbErrorCheckInDate)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbErrorCheckOutDate))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -204,7 +216,7 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,32 +232,43 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCheckInDate_Day1)
+                    .addComponent(tfCheckOutDate_Day)
                     .addComponent(jLabel8)
-                    .addComponent(tfCheckInDate_Month1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCheckOutDate_Month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(tfCheckInDate_Year1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCheckOutDate_Year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbErrorCheckInDate1)
+                .addComponent(lbErrorCheckOutDate)
                 .addGap(18, 18, 18)
-                .addComponent(btnReserve)
-                .addGap(18, 18, 18))
+                .addComponent(btnLogin)
+                .addGap(6, 6, 6))
         );
 
         jPanel6.setBackground(new java.awt.Color(245, 236, 213));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbRoomInformation.setBackground(new java.awt.Color(245, 236, 213));
+        tbRoomInformation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Número de habitación", "Tipo de habitación", "Precio por noche"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbRoomInformation);
+
+        btnSearch.setBackground(new java.awt.Color(87, 142, 126));
+        btnSearch.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(255, 250, 236));
+        btnSearch.setText("Buscar");
+
+        btnRoomDetails.setBackground(new java.awt.Color(87, 142, 126));
+        btnRoomDetails.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnRoomDetails.setForeground(new java.awt.Color(255, 250, 236));
+        btnRoomDetails.setText("Detalles de la habitación");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -253,14 +276,26 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRoomDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(416, 416, 416)
+                        .addComponent(btnRoomDetails)))
                 .addContainerGap())
         );
 
@@ -276,13 +311,12 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,17 +356,21 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCheckInDate_YearActionPerformed
 
-    private void tfCheckInDate_Day1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCheckInDate_Day1ActionPerformed
+    private void tfCheckOutDate_DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCheckOutDate_DayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCheckInDate_Day1ActionPerformed
+    }//GEN-LAST:event_tfCheckOutDate_DayActionPerformed
 
-    private void tfCheckInDate_Month1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCheckInDate_Month1ActionPerformed
+    private void tfCheckOutDate_MonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCheckOutDate_MonthActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCheckInDate_Month1ActionPerformed
+    }//GEN-LAST:event_tfCheckOutDate_MonthActionPerformed
 
-    private void tfCheckInDate_Year1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCheckInDate_Year1ActionPerformed
+    private void tfCheckOutDate_YearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCheckOutDate_YearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCheckInDate_Year1ActionPerformed
+    }//GEN-LAST:event_tfCheckOutDate_YearActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,8 +409,10 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnReserve;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JButton btnLogin;
+    public javax.swing.JButton btnRoomDetails;
+    public javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cbGuests;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -385,14 +425,14 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     public javax.swing.JLabel lbErrorCheckInDate;
-    public javax.swing.JLabel lbErrorCheckInDate1;
+    public javax.swing.JLabel lbErrorCheckOutDate;
+    private javax.swing.JTable tbRoomInformation;
     public javax.swing.JTextField tfCheckInDate_Day;
-    public javax.swing.JTextField tfCheckInDate_Day1;
     public javax.swing.JTextField tfCheckInDate_Month;
-    public javax.swing.JTextField tfCheckInDate_Month1;
     public javax.swing.JTextField tfCheckInDate_Year;
-    public javax.swing.JTextField tfCheckInDate_Year1;
+    public javax.swing.JTextField tfCheckOutDate_Day;
+    public javax.swing.JTextField tfCheckOutDate_Month;
+    public javax.swing.JTextField tfCheckOutDate_Year;
     // End of variables declaration//GEN-END:variables
 }
