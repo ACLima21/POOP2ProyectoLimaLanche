@@ -1,6 +1,6 @@
 package controller;
 
-import model.User;
+import model.Client;
 import view.RegisterInterfaz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +31,7 @@ public class RegisterController implements ActionListener {
         java.util.Arrays.fill(passwordChars, '0');
         java.util.Arrays.fill(confirmPasswordChars, '0');
 
-        User user = new User(fullName, username, email, password, confirmPassword, address, phone, profile);
+        Client user = new Client(fullName, username, email, password, confirmPassword, address, phone, profile);
 
         if (validateUser(user)) {
             System.out.println("Usuario registrado con éxito: " + user);
@@ -40,7 +40,7 @@ public class RegisterController implements ActionListener {
         }
     }
 
-    private boolean validateUser(User user) {
+    private boolean validateUser(Client user) {
         boolean isValid = true;
 
         clearErrorMessages();
@@ -123,7 +123,7 @@ public class RegisterController implements ActionListener {
         return phone.matches("\\d{10}");
     }
 
-    private boolean validateFields(User user) {
+    private boolean validateFields(Client user) {
         boolean isValid = true;
 
         if (user.getTfFullName().isEmpty()) {
