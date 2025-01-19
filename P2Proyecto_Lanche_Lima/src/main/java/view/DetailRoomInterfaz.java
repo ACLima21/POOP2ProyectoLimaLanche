@@ -197,7 +197,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(61, 61, 61));
-        jLabel5.setText("Tamaño de habitación:");
+        jLabel5.setText("Tamaño de habitación (m):");
 
         lbRoomSize.setBackground(new java.awt.Color(255, 255, 255));
         lbRoomSize.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
