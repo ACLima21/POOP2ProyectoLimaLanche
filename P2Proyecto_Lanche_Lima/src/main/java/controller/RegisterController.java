@@ -31,7 +31,7 @@ public class RegisterController implements ActionListener {
         java.util.Arrays.fill(passwordChars, '0');
         java.util.Arrays.fill(confirmPasswordChars, '0');
 
-        Client user = new Client(fullName, username, email, password, confirmPassword, address, phone, profile);
+        Client user = new Client(username, password, null, fullName, email, address, phone);
 
         if (validateUser(user)) {
             System.out.println("Usuario registrado con éxito: " + user);
@@ -45,33 +45,33 @@ public class RegisterController implements ActionListener {
 
         clearErrorMessages();
 
-        if (!validateFullName(user.getTfFullName())) {
+        if (!validateFullName(user.getFullName())) {
             view.lbErrorFullName.setText("El nombre solo puede contener letras.");
             isValid = false;
         }
 
-        if (!validateUsername(user.getTfUsername())) {
+        if (!validateUsername(user.getUsername())) {
             view.lbErrorUsername.setText("El nombre de usuario ya existe.");
             isValid = false;
         }
 
-        if (!validateEmail(user.getTfEmail())) {
+        if (!validateEmail(user.getEmail())) {
             view.lbErrorEmail.setText("Formato de correo inválido.");
             isValid = false;
         }
 
-        if (!validateEmailExists(user.getTfEmail())) {
+        if (!validateEmailExists(user.getEmail())) {
             view.lbErrorEmail.setText("El correo ya existe.");
             isValid = false;
         }
 
-        if (!validatePassword(user.getPfPassword(), user.getPfConfirmPassword())) {
+        if (!validatePassword(user.getPassword(), view.pfConfirmPassword.getPassword().toString())) {
             view.lbErrorPassword.setText("Las contraseñas deben tener al menos 6 caracteres y coincidir.");
             view.lbErrorConfirmPassword.setText("Las contraseñas deben tener al menos 6 caracteres y coincidir.");
             isValid = false;
         }
 
-        if (!validatePhone(user.getTfPhone())) {
+        if (!validatePhone(user.getPhone())) {
             view.lbErrorPhone.setText("El teléfono debe contener solo números y tener 10 dígitos.");
             isValid = false;
         }
@@ -126,36 +126,30 @@ public class RegisterController implements ActionListener {
     private boolean validateFields(Client user) {
         boolean isValid = true;
 
-        if (user.getTfFullName().isEmpty()) {
+        if (user.getFullName().isEmpty()) {
             view.lbErrorFullName.setText("Campo obligatorio.");
             isValid = false;
         }
-        if (user.getTfUsername().isEmpty()) {
+        if (user.getUsername().isEmpty()) {
             view.lbErrorUsername.setText("Campo obligatorio.");
             isValid = false;
         }
-        if (user.getTfEmail().isEmpty()) {
+        if (user.getEmail().isEmpty()) {
             view.lbErrorEmail.setText("Campo obligatorio.");
             isValid = false;
         }
-        if (user.getPfPassword().isEmpty()) {
+        if (user.getPassword().isEmpty()) {
             view.lbErrorPassword.setText("Campo obligatorio.");
             isValid = false;
         }
-        if (user.getTfAddress().isEmpty()) {
+        if (user.getAddress().isEmpty()) {
             view.lbErrorAddress.setText("Campo obligatorio.");
             isValid = false;
         }
-        if (user.getTfPhone().isEmpty()) {
+        if (user.getPhone().isEmpty()) {
             view.lbErrorPhone.setText("Campo obligatorio.");
             isValid = false;
         }
-        if (user.getCbProfile() == null
-                || (!user.getCbProfile().equals("cliente") && !user.getCbProfile().equals("administrador"))) {
-            view.lbErrorProfile.setText("Debe seleccionar un perfil.");
-            isValid = false;
-        }
-
         return isValid;
     }
 
