@@ -2,19 +2,19 @@ package model;
 
 public class Rooms {
 
-    private String roomName, roomType, capacity, roomSize, servicesIncluded;
+    private String roomName, roomType, capacity, roomSize, servicesIncluded, reservationDate, checkoutDate;
     private double pricePerNight;
-    private boolean availability;
     private String[] extraServices;
 
-    public Rooms(String roomName, String roomType, String capacity, String roomSize, String servicesIncluded, double pricePerNight, boolean availability, String[] extraServices) {
+    public Rooms(String roomName, String roomType, String capacity, String roomSize, String servicesIncluded, String reservationDate, String checkoutDate, double pricePerNight, boolean availability, String[] extraServices) {
         this.roomName = roomName;
         this.roomType = roomType;
         this.capacity = capacity;
         this.roomSize = roomSize;
         this.servicesIncluded = servicesIncluded;
+        this.reservationDate = reservationDate;
+        this.checkoutDate = checkoutDate;
         this.pricePerNight = pricePerNight;
-        this.availability = availability;
         this.extraServices = extraServices;
     }
 
@@ -66,12 +66,20 @@ public class Rooms {
         this.pricePerNight = pricePerNight;
     }
 
-    public boolean isAvailability() {
-        return availability;
+    public String getReservationDate() {
+        return reservationDate;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void setReservationDate(String reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public String getCheckoutDate() {
+        return checkoutDate;
+    }
+
+    public void setCheckoutDate(String checkoutDate) {
+        this.checkoutDate = checkoutDate;
     }
 
     public String[] getExtraServices() {
