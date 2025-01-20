@@ -31,8 +31,9 @@ public class CreationOfRooms {
                     + "RoomSize|"
                     + "RoomType|"
                     + "ServicesIncluded");//La escritura del archivo se realiza usando concetaciones
-
+            bw.newLine();
             for (int i = 1; i <= 20; i++) {
+                System.out.println(String.format("Room%02d", i) + "\t también: " + i);
                 saveCSV(roomsMap.get(String.format("Room%02d", i)));
             }
         } catch (IOException e) {//Error del tipo, entrada y salida de datos
@@ -48,6 +49,7 @@ public class CreationOfRooms {
         } else {
             searchEachRoom();
         }
+        System.out.println("\n\n\t\tCSV REVISADO CORRECTAMENTE\n\n");
     }
 
     public void searchEachRoom() {//Método que lee archivo tanto JSON como CSV
@@ -79,7 +81,6 @@ public class CreationOfRooms {
 
     public void saveCSV(Rooms roomForSubmit) {//Método para guardar la información en un archivo CSV
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {//Se intenta escribir el objeto en un archivo{ref1}
-            //String roomName, boolean availability, int capacity, String dateRangeReservations,String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded
             bw.write(roomForSubmit.getRoomName() + "|"
                     + roomForSubmit.isAvailability() + "|"
                     + roomForSubmit.getCapacity() + "|"
@@ -89,6 +90,7 @@ public class CreationOfRooms {
                     + roomForSubmit.getRoomSize() + "|"
                     + roomForSubmit.getRoomType() + "|"
                     + roomForSubmit.getServicesIncluded() + "");//La escritura del archivo se realiza usando concetaciones
+            bw.newLine();
         } catch (IOException e) {//Error del tipo, entrada y salida de datos
             System.out.println("Error al guardar el archivo JSON" + e.getMessage());//Si ocurre error se imprime el texto y la descripción del error ocurrido
         }

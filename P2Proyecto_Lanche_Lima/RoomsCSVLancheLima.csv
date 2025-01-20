@@ -1,0 +1,20 @@
+RoomName|Availability|Capacity|DateRangeReservations|ExtraServices|PricePerNight|RoomSize|RoomType|ServicesIncluded
+ual Premium|Wifi, Televisión, Aire acondicionado
+Room03|false|2|SN|SN|80.0|4m x 5.5m|Doble estándar|Wifi, Televisión, Aire acondicionado
+Room04|false|2|SN|SN|90.0|4m x 6.25m|Doble con balcón|Wifi, Televisión, Aire acondicionado, Balcón
+Room05|false|2|SN|SN|100.0|4.5m x 6.25m|Doble Premium|Wifi, Televisión, Aire acondicionado, Balcón
+Room06|false|2|SN|SN|75.0|4m x 5m|Doble estándar|Wifi, Televisión
+Room07|false|3|SN|SN|120.0|5m x 7m|Triple con balcón|Wifi, Televisión, Aire acondicionado, Balcón
+Room08|false|3|SN|SN|110.0|4.5m x 6.5m|Triple estándar|Wifi, Televisión, Aire acondicionado
+Room09|false|3|SN|SN|130.0|5.5m x 7m|Triple Premium|Wifi, Televisión, Aire acondicionado, Cesta de Bienvenida
+Room10|false|4|SN|SN|150.0|6m x 7.5m|Cuádruple familiar|Wifi, Televisión, Aire acondicionado
+Room11|false|4|SN|SN|165.0|6m x 8.5m|Cuádruple con balcón|Wifi, Televisión, Aire acondicionado, Balcón
+Room12|false|4|SN|SN|160.0|6m x 8m|Cuádruple Premium|Wifi, Televisión, Aire acondicionado, Balcón, Cesta de Bienvenida
+Room13|false|4|SN|SN|140.0|5.5m x 7.5m|Cuádruple estándar|Wifi, Televisión
+Room14|false|4|SN|SN|145.0|5.5m x 7.5m|Cuádruple familiar|Wifi, Televisión, Aire acondicionado
+Room15|false|5|SN|SN|180.0|6.5m x 8.5m|Suite familiar|Wifi, Televisión, Aire acondicionado, Cesta de Bienvenida
+Room16|false|5|SN|SN|200.0|7m x 8.5m|Suite Premium|Wifi, Televisión, Aire acondicionado, Balcón, Escritorio
+Room17|false|5|SN|SN|175.0|6.5m x 8m|Suite estándar|Wifi, Televisión, Aire acondicionado
+Room18|false|5|SN|SN|190.0|6.5m x 9m|Suite con balcón|Wifi, Televisión, Aire acondicionado, Balcón
+Room19|false|5|SN|SN|185.0|6.5m x 8.5m|Suite Deluxe|Wifi, Televisión, Aire acondicionado, Balcón
+Room20|false|5|SN|SN|210.0|7m x 9.5m|Suite Master|Wifi, Televisión, Aire acondicionado, Balcón, Escritorio
