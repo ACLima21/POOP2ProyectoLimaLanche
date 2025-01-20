@@ -2,92 +2,59 @@ package model;
 
 public class Rooms {
 
-    private String roomName, roomType, capacity, roomSize, servicesIncluded, reservationDate, checkoutDate;
+    private String roomName, dateRangeReservations, extraServices, roomSize, roomType, servicesIncluded;
+    private boolean availability;
+    private int capacity;
     private double pricePerNight;
-    private String[] extraServices;
 
-    public Rooms(String roomName, String roomType, String capacity, String roomSize, String servicesIncluded, String reservationDate, String checkoutDate, double pricePerNight, String[] extraServices) {
+    // Constructor
+    public Rooms(String roomName, boolean availability, int capacity, String dateRangeReservations,
+            String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded) {
         this.roomName = roomName;
-        this.roomType = roomType;
+        this.availability = availability;
         this.capacity = capacity;
-        this.roomSize = roomSize;
-        this.servicesIncluded = servicesIncluded;
-        this.reservationDate = reservationDate;
-        this.checkoutDate = checkoutDate;
-        this.pricePerNight = pricePerNight;
+        this.dateRangeReservations = dateRangeReservations;
         this.extraServices = extraServices;
+        this.pricePerNight = pricePerNight;
+        this.roomSize = roomSize;
+        this.roomType = roomType;
+        this.servicesIncluded = servicesIncluded;
     }
 
+    // Getters and Setters
     public String getRoomName() {
         return roomName;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public boolean isAvailability() {
+        return availability;
     }
 
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public String getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
+    public String getDateRangeReservations() {
+        return dateRangeReservations;
     }
 
-    public String getRoomSize() {
-        return roomSize;
-    }
-
-    public void setRoomSize(String roomSize) {
-        this.roomSize = roomSize;
-    }
-
-    public String getServicesIncluded() {
-        return servicesIncluded;
-    }
-
-    public void setServicesIncluded(String servicesIncluded) {
-        this.servicesIncluded = servicesIncluded;
+    public String getExtraServices() {
+        return extraServices;
     }
 
     public double getPricePerNight() {
         return pricePerNight;
     }
 
-    public void setPricePerNight(double pricePerNight) {
-        this.pricePerNight = pricePerNight;
+    public String getRoomSize() {
+        return roomSize;
     }
 
-    public String getReservationDate() {
-        return reservationDate;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setReservationDate(String reservationDate) {
-        this.reservationDate = reservationDate;
+    public String getServicesIncluded() {
+        return servicesIncluded;
     }
-
-    public String getCheckoutDate() {
-        return checkoutDate;
-    }
-
-    public void setCheckoutDate(String checkoutDate) {
-        this.checkoutDate = checkoutDate;
-    }
-
-    public String[] getExtraServices() {
-        return extraServices;
-    }
-
-    public void setExtraServices(String[] extraServices) {
-        this.extraServices = extraServices;
-    }
-
 }
