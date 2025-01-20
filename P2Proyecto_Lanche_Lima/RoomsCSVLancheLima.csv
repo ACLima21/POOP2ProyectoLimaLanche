@@ -1,5 +1,6 @@
 RoomName|Availability|Capacity|DateRangeReservations|ExtraServices|PricePerNight|RoomSize|RoomType|ServicesIncluded
-ual Premium|Wifi, Televisión, Aire acondicionado
+Room01|false|1|SN|SN|50.0|3m x 5m|Individual|Wifi, Televisión, Escritorio
+Room02|false|1|SN|SN|55.0|3m x 6m|Individual Premium|Wifi, Televisión, Aire acondicionado
 Room03|false|2|SN|SN|80.0|4m x 5.5m|Doble estándar|Wifi, Televisión, Aire acondicionado
 Room04|false|2|SN|SN|90.0|4m x 6.25m|Doble con balcón|Wifi, Televisión, Aire acondicionado, Balcón
 Room05|false|2|SN|SN|100.0|4.5m x 6.25m|Doble Premium|Wifi, Televisión, Aire acondicionado, Balcón
