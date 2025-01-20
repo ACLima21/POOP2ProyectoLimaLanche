@@ -26,7 +26,6 @@ public class RegisterController implements ActionListener {
         String confirmPassword = new String(confirmPasswordChars);
         String address = view.tfAddress.getText();
         String phone = view.tfPhone.getText();
-        String profile = (String) view.cbProfile.getSelectedItem();
 
         java.util.Arrays.fill(passwordChars, '0');
         java.util.Arrays.fill(confirmPasswordChars, '0');
@@ -89,7 +88,6 @@ public class RegisterController implements ActionListener {
         view.lbErrorAddress.setText("");
         view.lbErrorUsername.setText("");
         view.lbErrorConfirmPassword.setText("");
-        view.lbErrorProfile.setText("");
         view.lbErrorEmail.setText("");
         view.lbErrorPhone.setText("");
     }

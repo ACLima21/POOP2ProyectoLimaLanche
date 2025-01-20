@@ -59,9 +59,11 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 250, 236));
 
         cbGuests.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        cbGuests.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Huésped", "2 Huéspedes", "3 Huéspedes. 4 Huéspedes. 5 Huéspedes" }));
+        cbGuests.setForeground(new java.awt.Color(61, 61, 61));
+        cbGuests.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Huésped", "2 Huéspedes", "3 Huéspedes", "4 Huéspedes", "5 Huéspedes" }));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(61, 61, 61));
         jLabel1.setText("Huéspedes");
 
         jLabel4.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -69,9 +71,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel4.setText("Fecha de entrada");
 
         tfCheckInDate_Day.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckInDate_Day.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckInDate_Day.setForeground(new java.awt.Color(61, 61, 61));
         tfCheckInDate_Day.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckInDate_Day.setText("00");
         tfCheckInDate_Day.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCheckInDate_DayActionPerformed(evt);
@@ -83,9 +84,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel6.setText("/");
 
         tfCheckInDate_Month.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckInDate_Month.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckInDate_Month.setForeground(new java.awt.Color(61, 61, 61));
         tfCheckInDate_Month.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckInDate_Month.setText("00");
         tfCheckInDate_Month.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCheckInDate_MonthActionPerformed(evt);
@@ -97,9 +97,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel7.setText("/");
 
         tfCheckInDate_Year.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckInDate_Year.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckInDate_Year.setForeground(new java.awt.Color(61, 61, 61));
         tfCheckInDate_Year.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckInDate_Year.setText("0000");
         tfCheckInDate_Year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCheckInDate_YearActionPerformed(evt);
@@ -115,9 +114,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel5.setText("Fecha de salida");
 
         tfCheckOutDate_Day.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckOutDate_Day.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckOutDate_Day.setForeground(new java.awt.Color(61, 61, 61));
         tfCheckOutDate_Day.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckOutDate_Day.setText("00");
         tfCheckOutDate_Day.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCheckOutDate_DayActionPerformed(evt);
@@ -133,9 +131,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel8.setText("/");
 
         tfCheckOutDate_Month.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckOutDate_Month.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckOutDate_Month.setForeground(new java.awt.Color(61, 61, 61));
         tfCheckOutDate_Month.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckOutDate_Month.setText("00");
         tfCheckOutDate_Month.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCheckOutDate_MonthActionPerformed(evt);
@@ -147,9 +144,8 @@ public class OptionsRoomsInterfaz extends javax.swing.JFrame {
         jLabel9.setText("/");
 
         tfCheckOutDate_Year.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        tfCheckOutDate_Year.setForeground(new java.awt.Color(204, 204, 204));
+        tfCheckOutDate_Year.setForeground(new java.awt.Color(61, 61, 61));
         tfCheckOutDate_Year.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfCheckOutDate_Year.setText("0000");
         tfCheckOutDate_Year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCheckOutDate_YearActionPerformed(evt);

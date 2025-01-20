@@ -57,4 +57,41 @@ public class Rooms {
     public String getServicesIncluded() {
         return servicesIncluded;
     }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public void setDateRangeReservations(String dateRangeReservations) {
+        this.dateRangeReservations = dateRangeReservations;
+    }
+
+    public void setExtraServices(String extraServices) {
+        this.extraServices = extraServices;
+    }
+
+    public void setRoomSize(String roomSize) {
+        this.roomSize = roomSize;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setServicesIncluded(String servicesIncluded) {
+        this.servicesIncluded = servicesIncluded;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setPricePerNight(double pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
 }

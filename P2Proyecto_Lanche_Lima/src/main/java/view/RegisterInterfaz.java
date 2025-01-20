@@ -41,10 +41,7 @@ public class RegisterInterfaz extends javax.swing.JFrame {
         tfPhone = new javax.swing.JTextField();
         lbErrorPhone = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        lbErrorProfile = new javax.swing.JLabel();
         lbErrorConfirmPassword = new javax.swing.JLabel();
-        cbProfile = new javax.swing.JComboBox<>();
         pfPassword = new javax.swing.JPasswordField();
         pfConfirmPassword = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
@@ -126,21 +123,9 @@ public class RegisterInterfaz extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(61, 61, 61));
         jLabel11.setText("Confirmar contraseña:");
 
-        jLabel12.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(61, 61, 61));
-        jLabel12.setText("Perfil:");
-
-        lbErrorProfile.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        lbErrorProfile.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        lbErrorProfile.setText("Para registrar un administrador, deberá iniciar sesión como tal.");
-
         lbErrorConfirmPassword.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lbErrorConfirmPassword.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
         lbErrorConfirmPassword.setText("Error, las contraseñas no coinciden.");
-
-        cbProfile.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        cbProfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cliente" }));
-        cbProfile.setSelectedIndex(-1);
 
         pfPassword.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         pfPassword.setForeground(new java.awt.Color(61, 61, 61));
@@ -221,10 +206,6 @@ public class RegisterInterfaz extends javax.swing.JFrame {
                                 .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfPhone, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbErrorPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
                             .addComponent(lbErrorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbErrorConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -234,15 +215,12 @@ public class RegisterInterfaz extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lbErrorProfile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                             .addComponent(lbErrorAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                                    .addComponent(tfAddress))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbProfile, 0, 364, Short.MAX_VALUE))))))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfPhone, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbErrorPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -276,34 +254,26 @@ public class RegisterInterfaz extends javax.swing.JFrame {
                                 .addComponent(tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
                                 .addComponent(lbErrorAddress)))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(lbErrorProfile))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pfConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
-                                .addComponent(lbErrorConfirmPassword)))))
+                                .addComponent(lbErrorConfirmPassword))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(6, 6, 6)
+                                .addComponent(tfPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(lbErrorPhone)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(lbErrorPhone))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(lbErrorEmail)))
+                .addComponent(jLabel17)
+                .addGap(6, 6, 6)
+                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(lbErrorEmail)
                 .addGap(18, 18, 18)
                 .addComponent(btnSignUp)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -447,10 +417,8 @@ public class RegisterInterfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnSignIn;
     public javax.swing.JButton btnSignUp;
-    public javax.swing.JComboBox<String> cbProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
@@ -466,7 +434,6 @@ public class RegisterInterfaz extends javax.swing.JFrame {
     public javax.swing.JLabel lbErrorFullName;
     public javax.swing.JLabel lbErrorPassword;
     public javax.swing.JLabel lbErrorPhone;
-    public javax.swing.JLabel lbErrorProfile;
     public javax.swing.JLabel lbErrorUsername;
     public javax.swing.JPasswordField pfConfirmPassword;
     public javax.swing.JPasswordField pfPassword;

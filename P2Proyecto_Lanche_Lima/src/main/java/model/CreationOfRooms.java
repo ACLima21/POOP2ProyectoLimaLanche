@@ -52,7 +52,7 @@ public class CreationOfRooms {
         System.out.println("\n\n\t\tCSV REVISADO CORRECTAMENTE\n\n");
     }
 
-    public void searchEachRoom() {//Método que lee archivo tanto JSON como CSV
+    public void searchEachRoom() {
         Set<String> habitacionesBuscadas = new HashSet<>();//{ref3}
         Set<String> habitacionesEncontradas = new HashSet<>();
         for (int i = 1; i <= 20; i++) {
