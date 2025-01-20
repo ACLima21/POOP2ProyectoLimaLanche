@@ -20,6 +20,80 @@ public class CreationOfRooms {
         loadRoomsData();
     }
 
+    public void createFileWithDefaultRooms() {//Método para guardar la información en un archivo CSV
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {//Se intenta escribir el objeto en un archivo{ref1}
+            bw.write("RoomName|"
+                    + "Availability|"
+                    + "Capacity|"
+                    + "DateRangeReservations|"
+                    + "ExtraServices|"
+                    + "PricePerNight|"
+                    + "RoomSize|"
+                    + "RoomType|"
+                    + "ServicesIncluded");//La escritura del archivo se realiza usando concetaciones
+
+            for (int i = 1; i <= 20; i++) {
+                saveCSV(roomsMap.get(String.format("Room%02d", i)));
+            }
+        } catch (IOException e) {//Error del tipo, entrada y salida de datos
+            System.out.println("Error al guardar el archivo CSV" + e.getMessage());//Si ocurre error se imprime el texto y la descripción del error ocurrido
+        }
+    }
+
+    public void confirmTheFileExists() {
+        // Verificar si el archivo existe y no está vacío
+        File file = new File(fileName);
+        if (!file.exists() || file.length() <= 0) {//El archivo está vacío o no existe.
+            createFileWithDefaultRooms();
+        } else {
+            searchEachRoom();
+        }
+    }
+
+    public void searchEachRoom() {//Método que lee archivo tanto JSON como CSV
+        Set<String> habitacionesBuscadas = new HashSet<>();//{ref3}
+        Set<String> habitacionesEncontradas = new HashSet<>();
+        for (int i = 1; i <= 20; i++) {
+            habitacionesBuscadas.add(String.format("Room%02d", i));//{ref2}
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {//{ref4}
+                for (String room : habitacionesBuscadas) {
+                    if (line.contains(room)) {
+                        habitacionesEncontradas.add(room);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Resultado
+        for (String room : habitacionesBuscadas) {
+            if (!habitacionesEncontradas.contains(room)) {//habitacion no encontrada.
+                saveCSV(roomsMap.get(room));
+            }
+        }
+    }
+
+    public void saveCSV(Rooms roomForSubmit) {//Método para guardar la información en un archivo CSV
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {//Se intenta escribir el objeto en un archivo{ref1}
+            //String roomName, boolean availability, int capacity, String dateRangeReservations,String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded
+            bw.write(roomForSubmit.getRoomName() + "|"
+                    + roomForSubmit.isAvailability() + "|"
+                    + roomForSubmit.getCapacity() + "|"
+                    + roomForSubmit.getDateRangeReservations() + "|"
+                    + roomForSubmit.getExtraServices() + "|"
+                    + roomForSubmit.getPricePerNight() + "|"
+                    + roomForSubmit.getRoomSize() + "|"
+                    + roomForSubmit.getRoomType() + "|"
+                    + roomForSubmit.getServicesIncluded() + "");//La escritura del archivo se realiza usando concetaciones
+        } catch (IOException e) {//Error del tipo, entrada y salida de datos
+            System.out.println("Error al guardar el archivo JSON" + e.getMessage());//Si ocurre error se imprime el texto y la descripción del error ocurrido
+        }
+    }
+
     // Método para cargar las habitaciones con la información predefinida
     private void loadRoomsData() {
         roomsMap.put("Room01", new Rooms("Room01", false, 1, "SN", "SN", 50, "3m x 5m", "Individual", "Wifi, Televisión, Escritorio"));
@@ -42,90 +116,6 @@ public class CreationOfRooms {
         roomsMap.put("Room18", new Rooms("Room18", false, 5, "SN", "SN", 190, "6.5m x 9m", "Suite con balcón", "Wifi, Televisión, Aire acondicionado, Balcón"));
         roomsMap.put("Room19", new Rooms("Room19", false, 5, "SN", "SN", 185, "6.5m x 8.5m", "Suite Deluxe", "Wifi, Televisión, Aire acondicionado, Balcón"));
         roomsMap.put("Room20", new Rooms("Room20", false, 5, "SN", "SN", 210, "7m x 9.5m", "Suite Master", "Wifi, Televisión, Aire acondicionado, Balcón, Escritorio"));
-    }
-
-    public void createFileWithHeader() {//Método para guardar la información en un archivo CSV
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {//Se intenta escribir el objeto en un archivo{ref1}
-            bw.write("RoomName|"
-                    + "Availability|"
-                    + "Capacity|"
-                    + "DateRangeReservations|"
-                    + "ExtraServices|"
-                    + "PricePerNight|"
-                    + "RoomSize|"
-                    + "RoomType|"
-                    + "ServicesIncluded");//La escritura del archivo se realiza usando concetaciones
-        } catch (IOException e) {//Error del tipo, entrada y salida de datos
-            System.out.println("Error al guardar el archivo CSV" + e.getMessage());//Si ocurre error se imprime el texto y la descripción del error ocurrido
-        }
-    }
-
-    public void confimTheFileExists() {
-        // Verificar si el archivo existe y no está vacío
-        File file = new File(fileName);
-        if (!file.exists() || file.length() <= 0) {//El archivo está vacío o no existe.
-            createFileWithHeader();
-        }
-        searchEachRoom();
-    }
-
-    public void searchEachRoom() {//Método que lee archivo tanto JSON como CSV
-        Set<String> habitacionesBuscadas = new HashSet<>();//{ref3}
-        for (int i = 1; i <= 20; i++) {
-            habitacionesBuscadas.add(String.format("Room%02d", i));//{ref2}
-        }
-
-        Set<String> habitacionesEncontradas = new HashSet<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {//{ref4}
-                for (String room : habitacionesBuscadas) {
-                    if (line.contains(room)) {
-                        habitacionesEncontradas.add(room);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Resultado
-        for (String room : habitacionesBuscadas) {
-            if (!habitacionesEncontradas.contains(room)) {//habitacion no encontrada.
-                saveCSV(roomsMap.get(room));
-            }
-        }
-    }
-
-    public void searchIfDocumentIsOK() {
-        String line = "Id:678999|Name:Juan|Age:32";
-        Pattern pattern = Pattern.compile("Name:([^|]*)"); // Busca "Name:" seguido de cualquier cosa menos "|"
-        Matcher matcher = pattern.matcher(line);
-
-        String name = "";
-        if (matcher.find()) {
-            name = matcher.group(1); // Captura lo que está entre "Name:" y "|"
-        }
-
-        System.out.println("Nombre: " + name); // Salida: Nombre: Juan
-    }
-
-    public void saveCSV(Rooms roomForSubmit) {//Método para guardar la información en un archivo CSV
-        Rooms rooms = roomForSubmit;
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {//Se intenta escribir el objeto en un archivo{ref1}
-            //String roomName, boolean availability, int capacity, String dateRangeReservations,String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded
-            bw.write(rooms.getRoomName() + "|"
-                    + rooms.isAvailability() + "|"
-                    + rooms.getCapacity() + "|"
-                    + rooms.getDateRangeReservations() + "|"
-                    + rooms.getExtraServices() + "|"
-                    + rooms.getPricePerNight() + "|"
-                    + rooms.getRoomSize() + "|"
-                    + rooms.getRoomType() + "|"
-                    + rooms.getServicesIncluded() + "");//La escritura del archivo se realiza usando concetaciones
-        } catch (IOException e) {//Error del tipo, entrada y salida de datos
-            System.out.println("Error al guardar el archivo JSON" + e.getMessage());//Si ocurre error se imprime el texto y la descripción del error ocurrido
-        }
     }
 }
 
