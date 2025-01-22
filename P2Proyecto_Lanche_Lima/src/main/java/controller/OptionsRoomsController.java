@@ -110,27 +110,34 @@ public class OptionsRoomsController implements ActionListener {
 
     }
 
-    public void formatearFecha() {
+    public boolean formatearFecha() {
+        boolean dateOK = true;
         // Verificar si la fecha es válida
         if (cliInt.tfCheckInDate_Day.getText().isBlank()) {
             cliInt.lbErrorCheckInDate.setText("Error, ingrese la fecha");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
+            dateOK = false;
         } else if (cliInt.tfCheckInDate_Day.getText().matches("^\\d{2}$")) {
             cliInt.lbErrorCheckInDate.setText("Ingrese solo números");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
+            dateOK = false;
         } else if (cliInt.tfCheckInDate_Month.getText().matches("^\\d{2}$")) {
             cliInt.lbErrorCheckInDate.setText("Ingrese solo números");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
+            dateOK = false;
         } else if (cliInt.tfCheckInDate_Year.getText().matches("^20(2[5-9]|30)$")) {
             cliInt.lbErrorCheckInDate.setText("Ingrese solo números");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
+            dateOK = false;
         } else if (esFechaValida(Integer.parseInt(cliInt.tfCheckInDate_Day.getText()), Integer.parseInt(cliInt.tfCheckInDate_Month.getText()), Integer.parseInt(cliInt.tfCheckInDate_Year.getText()))) {
             cliInt.lbErrorCheckInDate.setText("Fecha inválida");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
+            dateOK = false;
         } else {
             cliInt.lbErrorCheckInDate.setText(" ");
-            roomsInTable();
         }
+
+        return dateOK;
     }
 
     @Override
@@ -144,7 +151,9 @@ public class OptionsRoomsController implements ActionListener {
             detailRoomInt.setVisible(true);
             cliInt.dispose();
         } else if (e.getSource() == cliInt.btnSearch) {
-            formatearFecha();
+            if (formatearFecha()) {
+                roomsInTable();
+            }
         }
 
     }
