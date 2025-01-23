@@ -102,9 +102,10 @@ public class LoginController implements ActionListener {
             if (viewRegister == null) {
                 viewRegister = new RegisterInterfaz();
 //Client modelClient, LoginController logCon, OptionsRoomsInterfaz optionsRoomsInterfaz, DetailRoomInterfaz detailRoomInterfaz, Rooms rooms
-                regCon = new RegisterController(new Client("", "", new ArrayList<>(), "", "", "", ""), this, null, null, null);
+                regCon = new RegisterController(viewLogin, viewRegister, new Client("", "", new ArrayList<>(), "", "", "", ""), null, null, null);
             }
             regCon.iniciarView();
+            System.out.println("Se inició la view");
             viewLogin.setVisible(false);
         } else if (e.getSource() == viewLogin.btnSignIn) {
             if (validationUser()) {

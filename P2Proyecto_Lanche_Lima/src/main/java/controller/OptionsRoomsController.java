@@ -6,6 +6,7 @@ import view.DetailRoomInterfaz;
 import model.Rooms;
 import model.CreationOfRooms;
 import controller.DetailRoomController;
+import controller.LoginController;
 import java.time.LocalDate;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -138,6 +139,7 @@ public class OptionsRoomsController implements ActionListener {
             cliInt.tbRoomInformation.setModel(modeloTabla);
             System.out.println("\n\nSe cargó la tabla\n\n");
         }
+
     }
 
     public int getStartAnio() {
@@ -215,7 +217,12 @@ public class OptionsRoomsController implements ActionListener {
             Document doc = createDocOfRooms(rooms.getRoomName()).get(0);//Ahora doc contiene los elementos de la habitación que se escogió.
             rooms.setAvailability(Boolean.parseBoolean(doc.get("Availability").toString()));
             rooms.setCapacity(doc.get("Capacity").toString());
-            rooms.setDateRangeReservations(doc.get("DateRangeReservations").toString());
+            rooms.setDateRangeReservations(cliInt.tfCheckInDate_Day.getText()
+                    + "-" + cliInt.tfCheckInDate_Month.getText()
+                    + "-" + cliInt.tfCheckInDate_Year.getText()
+                    + "/" + cliInt.tfCheckOutDate_Day.getText()
+                    + "-" + cliInt.tfCheckOutDate_Month.getText()
+                    + "-" + cliInt.tfCheckOutDate_Year.getText());
             rooms.setExtraServices(doc.get("ExtraServices").toString());
             rooms.setPricePerNight(Double.parseDouble(doc.get("PricePerNight").toString()));
             rooms.setRoomSize(doc.get("RoomSize").toString());
@@ -235,8 +242,10 @@ public class OptionsRoomsController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cliInt.btnLogin) {
-            LoginInterfaz loginInt = new LoginInterfaz();
-            loginInt.setVisible(true);
+
+            LoginController loginController = new LoginController(null, rooms);
+
+            loginController.iniciarView();
             cliInt.dispose();
         } else if (e.getSource() == cliInt.btnRoomDetails) {
             sendToDetails();

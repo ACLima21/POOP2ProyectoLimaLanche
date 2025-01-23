@@ -7,6 +7,7 @@ import view.RegisterInterfaz;
 import view.LoginInterfaz;
 import view.OptionsRoomsInterfaz;
 import view.DetailRoomInterfaz;
+import view.CheckFinishStepInterfaz;
 import controller.CheckFinishStepController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -16,9 +17,9 @@ import org.bson.Document;
 
 public class RegisterController implements ActionListener {
 
-    protected LoginController logCon;
     protected LoginInterfaz viewLogin;
     protected RegisterInterfaz viewRegister;
+    protected LoginController logCon;
     protected OptionsRoomsInterfaz optionsRoomsInterfaz;
     protected DetailRoomInterfaz detailRoomInterfaz;
     protected CheckFinishStepController checkFinishStepController;
@@ -26,11 +27,11 @@ public class RegisterController implements ActionListener {
     protected Rooms rooms;
     private connectionMongoDB mongo = new connectionMongoDB();
 
-    public RegisterController(Client modelClient, LoginController logCon, OptionsRoomsInterfaz optionsRoomsInterfaz, DetailRoomInterfaz detailRoomInterfaz, Rooms rooms) {
-        this.viewLogin = logCon.viewLogin;
+    public RegisterController(LoginInterfaz viewLogin, RegisterInterfaz viewRegister, Client modelClient, OptionsRoomsInterfaz optionsRoomsInterfaz, DetailRoomInterfaz detailRoomInterfaz, Rooms rooms) {
+        this.viewLogin = viewLogin;
+        this.viewRegister = viewRegister;
         this.optionsRoomsInterfaz = optionsRoomsInterfaz;
         this.detailRoomInterfaz = detailRoomInterfaz;
-        this.logCon = logCon;
         this.rooms = rooms;
         this.modelClient = modelClient;
         mongo.createConnection();
@@ -39,6 +40,7 @@ public class RegisterController implements ActionListener {
     }
 
     public void iniciarView() {
+        System.out.println("SI");
         viewRegister.setVisible(true);
         limpiarValidadores();
     }
@@ -53,18 +55,12 @@ public class RegisterController implements ActionListener {
                 viewRegister.tfAddress.getText(),
                 viewRegister.tfPhone.getText()
         );
-
-        Document doc = new Document("Username", modelClient.getUsername())
-                .append("Password", modelClient.getPassword())
-                .append("Email", modelClient.getEmail())
-                .append("Phone", modelClient.getPhone())
-                .append("FullName", modelClient.getFullName())
-                .append("Address", modelClient.getAddress())
-                .append("Reservations", modelClient.getRoomsNames());
-        mongo.insertUsuario(doc);
         modelClient.login();
-        checkFinishStepController = new CheckFinishStepController(rooms, modelClient);
+        CheckFinishStepInterfaz checkFinishStepInterfaz = new CheckFinishStepInterfaz();
+        checkFinishStepController = new CheckFinishStepController(rooms, modelClient, checkFinishStepInterfaz);
         checkFinishStepController.iniciarView();
+
+        viewRegister.dispose();
     }
 
     public boolean thereAreNumbers(String varComprobate, boolean numOrText) {

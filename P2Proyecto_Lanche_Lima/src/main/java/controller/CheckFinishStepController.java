@@ -16,12 +16,13 @@ public class CheckFinishStepController implements ActionListener {
 
     protected Rooms rooms;
     protected Client client;
-    protected connectionMongoDB mongo;
+    protected connectionMongoDB mongo = new connectionMongoDB();
     protected CheckFinishStepInterfaz checkFinishStepInterfaz;
 
-    public CheckFinishStepController(Rooms rooms, Client client) {
+    public CheckFinishStepController(Rooms rooms, Client client, CheckFinishStepInterfaz checkFinishStepInterfaz) {
         this.rooms = rooms;
         this.client = client;
+        this.checkFinishStepInterfaz = checkFinishStepInterfaz;
         this.checkFinishStepInterfaz.btnConfirmReservation.addActionListener(this);
         this.checkFinishStepInterfaz.btnSearch.addActionListener(this);
         this.checkFinishStepInterfaz.btnModify.addActionListener(this);
@@ -36,19 +37,17 @@ public class CheckFinishStepController implements ActionListener {
     }
 
     // Metodo para cargar los datos de MongoDB en la Tabla
-    public void loadDataForReservation() {
+    public void loadDataForAllReservation() {
         DefaultTableModel tableModel = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
         tableModel.setRowCount(0);//Limpia todas las filas de la tabla
 
         checkFinishStepInterfaz.lbTitleForReservation.setText("Resumen de la reserva - " + client.getUsername());
 //RoomType,Capacity,PricePerNight, DateRangeReservations, DateRangeReservations, costo total
         Object[] row = {
-            doc.get("RoomType"),
-            doc.get("Capacity"),
-            doc.get("CreditNumber"),
-            doc.get("Career"),
-            doc.get("Prom"),
-            doc.get("Total")
+            rooms.getRoomType(),
+            rooms.getCapacity(),
+            rooms.getPricePerNight(),
+            rooms.getDateRangeReservations()
         };
         tableModel.addRow(row);
 
@@ -56,32 +55,50 @@ public class CheckFinishStepController implements ActionListener {
         System.out.println("Se cargó la tabla");
     }
 
-    private void addWorker() {
-        updateWorkersTable();
+    public void loadDataForReservation() {
+        DefaultTableModel tableModel = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
+        tableModel.setRowCount(0);//Limpia todas las filas de la tabla
+
+        checkFinishStepInterfaz.lbTitleForReservation.setText("Resumen de la reserva - " + client.getUsername());
+//RoomType,Capacity,PricePerNight, DateRangeReservations, DateRangeReservations, costo total
+        Object[] row = {
+            rooms.getRoomType(),
+            rooms.getCapacity(),
+            rooms.getPricePerNight(),
+            rooms.getDateRangeReservations()
+        };
+        tableModel.addRow(row);
+
+        checkFinishStepInterfaz.tbReservationResume.setModel(tableModel);
+        System.out.println("Se cargó la tabla");
     }
 
-    private void searchWorker() {
-        updateWorkersTable();
-    }
+    public void addRoomToClient() {
+        if (checkFinishStepInterfaz.btnConfirmReservation.getText() == "Confirmar") {
+            checkFinishStepInterfaz.btnConfirmReservation.setText("Agregar");
+            ArrayList<String> roomToAdd = new ArrayList<>();
+            roomToAdd = client.getRoomsNames();
+            roomToAdd.add(rooms.getRoomName());
+            client.setRoomsNames(roomToAdd);
+            Document doc = new Document("Username", client.getUsername())
+                    .append("Password", client.getPassword())
+                    .append("Email", client.getEmail())
+                    .append("Phone", client.getPhone())
+                    .append("FullName", client.getFullName())
+                    .append("Address", client.getAddress())
+                    .append("Reservations", client.getRoomsNames());
+            mongo.insertUsuario(doc);
 
-    private void modifyWorker() {
-        updateWorkersTable();
-    }
+        } else if (checkFinishStepInterfaz.btnConfirmReservation.getText() == "Agregar") {
 
-    private void deleteWorker() {
-        updateWorkersTable();
-    }
+        }
 
-    private void logout() {
-    }
-
-    private void updateWorkersTable() {
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == checkFinishStepInterfaz.btnConfirmReservation) {
-            addWorker();
+            addRoomToClient();
         } else if (e.getSource() == checkFinishStepInterfaz.btnSearch) {
             searchWorker();
         } else if (e.getSource() == checkFinishStepInterfaz.btnModify) {

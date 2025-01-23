@@ -4,9 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import view.OptionsRoomsInterfaz;
 import model.Rooms;
+import model.Client;
 import controller.OptionsRoomsController;
 import controller.RegisterController;
 import view.DetailRoomInterfaz;
+import view.RegisterInterfaz;
+import view.LoginInterfaz;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -145,8 +148,14 @@ public class DetailRoomController implements ActionListener, ItemListener {
     }
 
     public void wantRoom() {
-        registerController = new RegisterController(null, null, optionsRoomsInterfaz, detRooInt, rooms);
+        RegisterInterfaz registerInterfaz = new RegisterInterfaz();
+        LoginInterfaz loginInterfaz = new LoginInterfaz();
+        Client client = new Client("", "", null, "", "", "", "");
+        registerController = new RegisterController(loginInterfaz, registerInterfaz, client, optionsRoomsInterfaz, detRooInt, rooms);
+        //registerController = new RegisterController(loginInterfaz, null, optionsRoomsInterfaz, detRooInt, rooms);
         registerController.iniciarView();
+
+        detRooInt.setVisible(false);
     }
 
     @Override
