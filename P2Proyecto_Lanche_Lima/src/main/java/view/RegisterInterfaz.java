@@ -285,6 +285,7 @@ public class RegisterInterfaz extends javax.swing.JFrame {
         jLabel1.setText("Register");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ismael Lima\\Documents\\GitHub\\SEGUNDO SEMESTRE - POO\\POOP2ProyectoLimaLanche\\P2Proyecto_Lanche_Lima\\src\\main\\java\\icons\\login_11213101.png")); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(50, 50));
 
         btnSignIn.setBackground(new java.awt.Color(255, 250, 236));

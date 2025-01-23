@@ -2,8 +2,12 @@ package controller;
 
 import model.connectionMongoDB;
 import model.Client;
+import model.Rooms;
 import view.RegisterInterfaz;
 import view.LoginInterfaz;
+import view.OptionsRoomsInterfaz;
+import view.DetailRoomInterfaz;
+import controller.CheckFinishStepController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +19,19 @@ public class RegisterController implements ActionListener {
     protected LoginController logCon;
     protected LoginInterfaz viewLogin;
     protected RegisterInterfaz viewRegister;
+    protected OptionsRoomsInterfaz optionsRoomsInterfaz;
+    protected DetailRoomInterfaz detailRoomInterfaz;
+    protected CheckFinishStepController checkFinishStepController;
     protected Client modelClient;
+    protected Rooms rooms;
     private connectionMongoDB mongo = new connectionMongoDB();
 
-    public RegisterController(RegisterInterfaz viewRegister, Client modelClient, LoginController logCon) {
+    public RegisterController(Client modelClient, LoginController logCon, OptionsRoomsInterfaz optionsRoomsInterfaz, DetailRoomInterfaz detailRoomInterfaz, Rooms rooms) {
         this.viewLogin = logCon.viewLogin;
+        this.optionsRoomsInterfaz = optionsRoomsInterfaz;
+        this.detailRoomInterfaz = detailRoomInterfaz;
         this.logCon = logCon;
-        this.viewRegister = viewRegister;
+        this.rooms = rooms;
         this.modelClient = modelClient;
         mongo.createConnection();
         this.viewRegister.btnSignUp.addActionListener(this);
@@ -35,13 +45,13 @@ public class RegisterController implements ActionListener {
 
     public void guardarDatos() {
         modelClient = new Client(
-            viewRegister.tfUsername.getText(),
-            String.copyValueOf(viewRegister.pfPassword.getPassword()),
-            new ArrayList<>(),
-            viewRegister.tfFullName.getText(),
-            viewRegister.tfEmail.getText(),
-            viewRegister.tfAddress.getText(),
-            viewRegister.tfPhone.getText()
+                viewRegister.tfUsername.getText(),
+                String.copyValueOf(viewRegister.pfPassword.getPassword()),
+                new ArrayList<>(),
+                viewRegister.tfFullName.getText(),
+                viewRegister.tfEmail.getText(),
+                viewRegister.tfAddress.getText(),
+                viewRegister.tfPhone.getText()
         );
 
         Document doc = new Document("Username", modelClient.getUsername())
@@ -51,8 +61,10 @@ public class RegisterController implements ActionListener {
                 .append("FullName", modelClient.getFullName())
                 .append("Address", modelClient.getAddress())
                 .append("Reservations", modelClient.getRoomsNames());
-        mongo.insertUsuario(doc); 
+        mongo.insertUsuario(doc);
         modelClient.login();
+        checkFinishStepController = new CheckFinishStepController(rooms, modelClient);
+        checkFinishStepController.iniciarView();
     }
 
     public boolean thereAreNumbers(String varComprobate, boolean numOrText) {
@@ -123,7 +135,7 @@ public class RegisterController implements ActionListener {
         } else {
             viewRegister.lbErrorAddress.setText(" ");
         }
-        
+
         // validacion nombre de usuario
         if (!viewRegister.tfUsername.getText().matches("^[a-zA-Z][a-zA-Z0-9]+$")) {
             viewRegister.lbErrorUsername.setText("Error, usuario incorrecto");
@@ -188,6 +200,11 @@ public class RegisterController implements ActionListener {
         viewRegister.lbErrorPhone.setText(" ");
     }
 
+    public void signIn() {
+        LoginController loginController = new LoginController(viewRegister, rooms);
+        loginController.iniciarView();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewRegister.btnSignUp) {
@@ -195,8 +212,8 @@ public class RegisterController implements ActionListener {
                 guardarDatos();
             }
         } else if (e.getSource() == viewRegister.btnSignIn) {
-            logCon.iniciarView();
-            viewRegister.setVisible(false);
+            signIn();
+            viewRegister.dispose();
         }
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import model.connectionMongoDB;
 import model.Client;
+import model.Rooms;
 import view.LoginInterfaz;
 import view.RegisterInterfaz;
 import java.awt.Color;
@@ -17,12 +18,14 @@ public class LoginController implements ActionListener {
     protected LoginInterfaz viewLogin;
     protected RegisterInterfaz viewRegister;
     protected Client modelClient;
+    protected Rooms rooms;
     private connectionMongoDB mongo = new connectionMongoDB();
 
-    public LoginController(LoginInterfaz viewLogin, RegisterInterfaz viewRegister) {
+    public LoginController(RegisterInterfaz viewRegister, Rooms rooms) {
+        this.rooms = rooms;
         this.viewLogin = viewLogin;
         this.viewRegister = viewRegister;
-        mongo.createConnection(); 
+        mongo.createConnection();
 
         this.viewLogin.btnSignUp.addActionListener(this);
         this.viewLogin.btnSignIn.addActionListener(this);
@@ -96,12 +99,13 @@ public class LoginController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewLogin.btnSignUp) {
-            if (viewRegister == null) { 
+            if (viewRegister == null) {
                 viewRegister = new RegisterInterfaz();
-                regCon = new RegisterController(viewRegister, new Client("", "", new ArrayList<>(), "", "", "", ""), this);
+//Client modelClient, LoginController logCon, OptionsRoomsInterfaz optionsRoomsInterfaz, DetailRoomInterfaz detailRoomInterfaz, Rooms rooms
+                regCon = new RegisterController(new Client("", "", new ArrayList<>(), "", "", "", ""), this, null, null, null);
             }
-            regCon.iniciarView(); 
-            viewLogin.setVisible(false); 
+            regCon.iniciarView();
+            viewLogin.setVisible(false);
         } else if (e.getSource() == viewLogin.btnSignIn) {
             if (validationUser()) {
                 JOptionPane.showMessageDialog(viewLogin, "¡Inicio de sesión exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);

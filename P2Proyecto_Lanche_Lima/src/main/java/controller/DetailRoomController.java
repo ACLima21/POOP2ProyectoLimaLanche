@@ -5,6 +5,7 @@ import java.awt.event.ItemListener;
 import view.OptionsRoomsInterfaz;
 import model.Rooms;
 import controller.OptionsRoomsController;
+import controller.RegisterController;
 import view.DetailRoomInterfaz;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -18,6 +19,7 @@ public class DetailRoomController implements ActionListener, ItemListener {
     private OptionsRoomsInterfaz optionsRoomsInterfaz;
     private Rooms rooms;
     private StringBuilder selectedText = new StringBuilder();
+    private RegisterController registerController;
 
     public DetailRoomController(DetailRoomInterfaz detRooInt, Rooms rooms, OptionsRoomsInterfaz optionsRoomsInterfaz) {
         this.detRooInt = detRooInt;
@@ -40,6 +42,7 @@ public class DetailRoomController implements ActionListener, ItemListener {
 
     public void setData() {
         detRooInt.lbRoomName.setText(rooms.getRoomName());
+        detRooInt.lbRoomType.setText(rooms.getRoomType());
         detRooInt.lbPricePerNight.setText(String.valueOf(rooms.getPricePerNight()));
         detRooInt.lbCapacity.setText(rooms.getCapacity());
         detRooInt.lbRoomSize.setText(rooms.getRoomSize());
@@ -67,17 +70,6 @@ public class DetailRoomController implements ActionListener, ItemListener {
                 comodidad durante tu estadía.
                 Transporte (20 $): Traslados cómodos y seguros desde y hacia el aeropuerto, estaciones de bus o puntos
                 de interés, con vehículos modernos y conductores profesionales.""", "INFORMACIÓN DE LAS HABITACIONES", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == detRooInt.btnGetBack) {
-            getBack();
-        } else if (e.getSource() == detRooInt.btnMoreInformation) {
-            moreInformationOfTheServices();
-        } else if (e.getSource() == detRooInt.btnWantIt) {
-
-        }
     }
 
     @Override
@@ -152,4 +144,19 @@ public class DetailRoomController implements ActionListener, ItemListener {
         detRooInt.lbPricePerNight.setText(String.valueOf(rooms.getPricePerNight()));
     }
 
+    public void wantRoom() {
+        registerController = new RegisterController(null, null, optionsRoomsInterfaz, detRooInt, rooms);
+        registerController.iniciarView();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == detRooInt.btnGetBack) {
+            getBack();
+        } else if (e.getSource() == detRooInt.btnMoreInformation) {
+            moreInformationOfTheServices();
+        } else if (e.getSource() == detRooInt.btnWantIt) {
+            wantRoom();
+        }
+    }
 }

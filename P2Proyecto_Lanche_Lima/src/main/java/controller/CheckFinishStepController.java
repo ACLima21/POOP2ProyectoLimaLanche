@@ -1,19 +1,59 @@
 package controller;
 
+import com.mongodb.client.MongoCollection;
 import view.CheckFinishStepInterfaz;
+import model.Rooms;
+import model.Client;
+import model.connectionMongoDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import org.bson.Document;
 
 public class CheckFinishStepController implements ActionListener {
-    private CheckFinishStepInterfaz view;
 
-    public CheckFinishStepController(CheckFinishStepInterfaz view) {
-        this.view = view;
-        this.view.btnConfirmReservation.addActionListener(this);
-        this.view.btnSearch.addActionListener(this);
-        this.view.btnModify.addActionListener(this);
-        this.view.btnDelete.addActionListener(this);
-        this.view.btnLogout.addActionListener(this);
+    protected Rooms rooms;
+    protected Client client;
+    protected connectionMongoDB mongo;
+    protected CheckFinishStepInterfaz checkFinishStepInterfaz;
+
+    public CheckFinishStepController(Rooms rooms, Client client) {
+        this.rooms = rooms;
+        this.client = client;
+        this.checkFinishStepInterfaz.btnConfirmReservation.addActionListener(this);
+        this.checkFinishStepInterfaz.btnSearch.addActionListener(this);
+        this.checkFinishStepInterfaz.btnModify.addActionListener(this);
+        this.checkFinishStepInterfaz.btnDelete.addActionListener(this);
+        this.checkFinishStepInterfaz.btnLogout.addActionListener(this);
+        mongo.createConnection();
+    }
+
+    public void iniciarView() {
+        checkFinishStepInterfaz.setVisible(true);
+        loadDataForReservation();
+    }
+
+    // Metodo para cargar los datos de MongoDB en la Tabla
+    public void loadDataForReservation() {
+        DefaultTableModel tableModel = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
+        tableModel.setRowCount(0);//Limpia todas las filas de la tabla
+
+        checkFinishStepInterfaz.lbTitleForReservation.setText("Resumen de la reserva - " + client.getUsername());
+//RoomType,Capacity,PricePerNight, DateRangeReservations, DateRangeReservations, costo total
+        Object[] row = {
+            doc.get("RoomType"),
+            doc.get("Capacity"),
+            doc.get("CreditNumber"),
+            doc.get("Career"),
+            doc.get("Prom"),
+            doc.get("Total")
+        };
+        tableModel.addRow(row);
+
+        checkFinishStepInterfaz.tbReservationResume.setModel(tableModel);
+        System.out.println("Se cargó la tabla");
     }
 
     private void addWorker() {
@@ -25,33 +65,32 @@ public class CheckFinishStepController implements ActionListener {
     }
 
     private void modifyWorker() {
-            updateWorkersTable();
-        }
-    
+        updateWorkersTable();
+    }
 
     private void deleteWorker() {
-            updateWorkersTable();
-        }
+        updateWorkersTable();
+    }
 
     private void logout() {
     }
-    
+
     private void updateWorkersTable() {
     }
-    
-      @Override
+
+    @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == view.btnConfirmReservation) {
+        if (e.getSource() == checkFinishStepInterfaz.btnConfirmReservation) {
             addWorker();
-        } else if (e.getSource() == view.btnSearch) {
+        } else if (e.getSource() == checkFinishStepInterfaz.btnSearch) {
             searchWorker();
-        } else if (e.getSource() == view.btnModify) {
+        } else if (e.getSource() == checkFinishStepInterfaz.btnModify) {
             modifyWorker();
-        } else if (e.getSource() == view.btnDelete) {
+        } else if (e.getSource() == checkFinishStepInterfaz.btnDelete) {
             deleteWorker();
-        } else if (e.getSource() == view.btnLogout) {
+        } else if (e.getSource() == checkFinishStepInterfaz.btnLogout) {
             logout();
         }
     }
-    
+
 }
