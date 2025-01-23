@@ -96,12 +96,12 @@ public class LoginController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewLogin.btnSignUp) {
-            modelClient = new Client("", "", new ArrayList<>(), "", "", "", "");
-            viewRegister = new RegisterInterfaz();
-            regCon = new RegisterController(viewRegister, modelClient, this);
-
-            regCon.iniciarView();
-            viewLogin.setVisible(false);
+            if (viewRegister == null) { 
+                viewRegister = new RegisterInterfaz();
+                regCon = new RegisterController(viewRegister, new Client("", "", new ArrayList<>(), "", "", "", ""), this);
+            }
+            regCon.iniciarView(); 
+            viewLogin.setVisible(false); 
         } else if (e.getSource() == viewLogin.btnSignIn) {
             if (validationUser()) {
                 JOptionPane.showMessageDialog(viewLogin, "¡Inicio de sesión exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
