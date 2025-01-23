@@ -6,6 +6,7 @@ import view.LoginInterfaz;
 import view.DetailRoomInterfaz;
 import model.Rooms;
 import model.CreationOfRooms;
+import controller.DetailRoomController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 
@@ -78,43 +80,54 @@ public class OptionsRoomsController implements ActionListener {
         cliInt.lbErrorCheckOutDate.setText(" ");
     }
 
-    public void roomsInTable() {
-        DefaultTableModel modeloTabla = (DefaultTableModel) cliInt.tbRoomInformation.getModel();
-        modeloTabla.setRowCount(0);//Limpia todas las filas de la tabla
+    public List<Document> createDocOfRooms(String varToCompare) {
         List<Document> documents = new ArrayList<>();
         Document searchedRoomsDoc = null;
-        int i = 1;
+
         try (BufferedReader br = new BufferedReader(new FileReader("RoomsCSVLancheLima.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println("\n\n" + line + "\t" + cliInt.cbGuests.getSelectedItem().toString() + "\n\n");
-                if (line.contains(cliInt.cbGuests.getSelectedItem().toString())) {
+                if (line.contains(varToCompare)) {
+                    System.out.println("\n\n" + line + "\t" + varToCompare + "\n\n");
                     String[] partes = line.split("\\|"); // Dividir el string por "|"
-//"RoomName|""Availability|"+ "Capacity|"+ "DateRangeReservations|"+ "ExtraServices|"+ "PricePerNight|"+ "RoomSize|"+ "RoomType|"+ "ServicesIncluded
                     searchedRoomsDoc = new Document("RoomName", line.split("\\|")[0])
+                            .append("Availability", line.split("\\|")[1])
+                            .append("Capacity", line.split("\\|")[2])
+                            .append("DateRangeReservations", line.split("\\|")[3])
+                            .append("ExtraServices", line.split("\\|")[4])
+                            .append("PricePerNight", line.split("\\|")[5])
+                            .append("RoomSize", line.split("\\|")[6])
                             .append("RoomType", line.split("\\|")[7])
-                            .append("PricePerNight", line.split("\\|")[5]);
+                            .append("ServicesIncluded", line.split("\\|")[8]);
                     documents.add(searchedRoomsDoc);
-                    System.out.println("Se creó esta cantidad de documentos: " + i);
-                    i++;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("\n\n" + documents.isEmpty() + "\n\n");
-        // Iterar sobre los documentos y añadir filas al modelo de la tabla
-        for (Document doc : documents) {
-            Object[] row = {
-                doc.get("RoomName"),
-                doc.get("RoomType"),
-                doc.get("PricePerNight")
-            };
-            modeloTabla.addRow(row);
-        }
+        return documents;
+    }
 
-        cliInt.tbRoomInformation.setModel(modeloTabla);
-        System.out.println("\n\nSe cargó la tabla\n\n");
+    public void roomsInTable() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) cliInt.tbRoomInformation.getModel();
+        modeloTabla.setRowCount(0);//Limpia todas las filas de la tabla
+        // Iterar sobre los documentos y añadir filas al modelo de la tabla
+        for (Document doc : createDocOfRooms(cliInt.cbGuests.getSelectedItem().toString())) {
+            if (Boolean.parseBoolean(doc.get("Availability").toString())) {//Si la habitación está disponible entonces se obtiene sus datos y se agregan a la tabla
+                Object[] row = {
+                    doc.get("RoomName"),
+                    doc.get("RoomType"),
+                    doc.get("PricePerNight")
+                };
+                modeloTabla.addRow(row);
+            }
+        }
+        if (modeloTabla.getRowCount() == 0) {//Si no hay filas en la tabla
+            JOptionPane.showMessageDialog(cliInt, "Lo sentimos, no hay habitaciones disponibles", "HABITACIONES AGOTADAS", JOptionPane.INFORMATION_MESSAGE);
+        } else {//si hay una o más de una
+            cliInt.tbRoomInformation.setModel(modeloTabla);
+            System.out.println("\n\nSe cargó la tabla\n\n");
+        }
     }
 
     public boolean formatearFecha() {
@@ -179,6 +192,27 @@ public class OptionsRoomsController implements ActionListener {
         return dateOK;
     }
 
+    public void sendToDetails() {
+        if (cliInt.tbRoomInformation.getSelectedRow() >= 0) {//Para el caso en el que si se seleccionó una habitación
+            rooms.setRoomName(cliInt.tbRoomInformation.getValueAt(cliInt.tbRoomInformation.getSelectedRow(), 0).toString());
+
+            Document doc = createDocOfRooms(rooms.getRoomName()).get(0);//Ahora doc contiene los elementos de la habitación que se escogió.
+            rooms.setAvailability(Boolean.parseBoolean(doc.get("Availability").toString()));
+            rooms.setCapacity(doc.get("Capacity").toString());
+            rooms.setDateRangeReservations(doc.get("DateRangeReservations").toString());
+            rooms.setExtraServices(doc.get("ExtraServices").toString());
+            rooms.setPricePerNight(Double.parseDouble(doc.get("PricePerNight").toString()));
+            rooms.setRoomSize(doc.get("RoomSize").toString());
+            rooms.setRoomType(doc.get("RoomType").toString());
+            rooms.setServicesIncluded(doc.get("ServicesIncluded").toString());
+
+            DetailRoomInterfaz intDetail = new DetailRoomInterfaz();
+            DetailRoomController detailOfRoom = new DetailRoomController(intDetail, rooms);
+            detailOfRoom.startView();
+        } else {//Para el caso en el que no se seleccione ninguna habitación
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cliInt.btnLogin) {
@@ -186,8 +220,7 @@ public class OptionsRoomsController implements ActionListener {
             loginInt.setVisible(true);
             cliInt.dispose();
         } else if (e.getSource() == cliInt.btnRoomDetails) {
-            DetailRoomInterfaz detailRoomInt = new DetailRoomInterfaz();
-            detailRoomInt.setVisible(true);
+            sendToDetails();
             cliInt.dispose();
         } else if (e.getSource() == cliInt.btnSearch) {
             if (formatearFecha()) {
