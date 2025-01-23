@@ -2,13 +2,12 @@ package model;
 
 public class Rooms {
 
-    private String roomName, dateRangeReservations, extraServices, roomSize, roomType, servicesIncluded;
+    private String roomName, dateRangeReservations, extraServices, roomSize, roomType, servicesIncluded, capacity;
     private boolean availability;
-    private int capacity;
     private double pricePerNight;
 
     // Constructor
-    public Rooms(String roomName, boolean availability, int capacity, String dateRangeReservations,
+    public Rooms(String roomName, boolean availability, String capacity, String dateRangeReservations,
             String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded) {
         this.roomName = roomName;
         this.availability = availability;
@@ -30,7 +29,7 @@ public class Rooms {
         return availability;
     }
 
-    public int getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
@@ -86,7 +85,7 @@ public class Rooms {
         this.availability = availability;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 

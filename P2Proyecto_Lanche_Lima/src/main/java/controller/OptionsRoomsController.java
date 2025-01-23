@@ -5,6 +5,7 @@ import view.OptionsRoomsInterfaz;
 import view.LoginInterfaz;
 import view.DetailRoomInterfaz;
 import model.Rooms;
+import model.CreationOfRooms;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -72,15 +73,6 @@ public class OptionsRoomsController implements ActionListener {
         return (anio % 4 == 0 && (anio % 100 != 0 || anio % 400 == 0));
     }
 
-    public String formatearFecha(int dia, int mes, int anio) {
-        // Verificar si la fecha es válida
-        if (esFechaValida(dia, mes, anio)) {
-            return String.format("%02d/%02d/%04d", dia, mes, anio);
-        } else {
-            return "Fecha no válida";
-        }
-    }
-
     public void limpiarValidadores() {
         cliInt.lbErrorCheckInDate.setText(" ");
         cliInt.lbErrorCheckOutDate.setText(" ");
@@ -91,23 +83,26 @@ public class OptionsRoomsController implements ActionListener {
         modeloTabla.setRowCount(0);//Limpia todas las filas de la tabla
         List<Document> documents = new ArrayList<>();
         Document searchedRoomsDoc = null;
-
+        int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader("RoomsCSVLancheLima.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
+                System.out.println("\n\n" + line + "\t" + cliInt.cbGuests.getSelectedItem().toString() + "\n\n");
                 if (line.contains(cliInt.cbGuests.getSelectedItem().toString())) {
                     String[] partes = line.split("\\|"); // Dividir el string por "|"
 //"RoomName|""Availability|"+ "Capacity|"+ "DateRangeReservations|"+ "ExtraServices|"+ "PricePerNight|"+ "RoomSize|"+ "RoomType|"+ "ServicesIncluded
                     searchedRoomsDoc = new Document("RoomName", line.split("\\|")[0])
                             .append("RoomType", line.split("\\|")[7])
                             .append("PricePerNight", line.split("\\|")[5]);
+                    documents.add(searchedRoomsDoc);
+                    System.out.println("Se creó esta cantidad de documentos: " + i);
+                    i++;
                 }
-                documents.add(searchedRoomsDoc);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        System.out.println("\n\n" + documents.isEmpty() + "\n\n");
         // Iterar sobre los documentos y añadir filas al modelo de la tabla
         for (Document doc : documents) {
             Object[] row = {
@@ -124,6 +119,7 @@ public class OptionsRoomsController implements ActionListener {
 
     public boolean formatearFecha() {
         boolean dateOK = true;
+
         // Verificar si la fecha es válida
         if (cliInt.tfCheckInDate_Day.getText().isBlank() || cliInt.tfCheckInDate_Month.getText().isBlank() || cliInt.tfCheckInDate_Year.getText().isBlank()) {
             cliInt.lbErrorCheckInDate.setText("Error, ingrese la fecha");
@@ -144,7 +140,7 @@ public class OptionsRoomsController implements ActionListener {
             cliInt.lbErrorCheckInDate.setText("Ingrese solo números");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
             dateOK = false;
-        } else if (esFechaValida(Integer.parseInt(cliInt.tfCheckInDate_Day.getText()), Integer.parseInt(cliInt.tfCheckInDate_Month.getText()), Integer.parseInt(cliInt.tfCheckInDate_Year.getText()))) {
+        } else if (!esFechaValida(Integer.parseInt(cliInt.tfCheckInDate_Day.getText()), Integer.parseInt(cliInt.tfCheckInDate_Month.getText()), Integer.parseInt(cliInt.tfCheckInDate_Year.getText()))) {
             cliInt.lbErrorCheckInDate.setText("Fecha inválida");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
             dateOK = false;
@@ -157,31 +153,29 @@ public class OptionsRoomsController implements ActionListener {
             cliInt.lbErrorCheckOutDate.setText("Error, ingrese la fecha");
             cliInt.lbErrorCheckOutDate.setForeground(Color.red);
             dateOK = false;
-        } else if (!cliInt.tfCheckOutDate_Day.getText().matches("^\\d{2}$")) {
-            System.out.println("el día está mal");
-            cliInt.lbErrorCheckOutDate.setText("Ingrese solo números");
+        } else if (!cliInt.tfCheckOutDate_Day.getText().matches("^\\d{2}$")
+                || !cliInt.tfCheckOutDate_Month.getText().matches("^\\d{2}$")
+                || !cliInt.tfCheckOutDate_Year.getText().matches("^20(2[5-9]|30)$")) {
+            System.out.println("el día, mes, o año está mal");
+            cliInt.lbErrorCheckOutDate.setText("Formato: dd/mm/aaaa");
             cliInt.lbErrorCheckOutDate.setForeground(Color.red);
             dateOK = false;
-        } else if (!cliInt.tfCheckOutDate_Month.getText().matches("^\\d{2}$")) {
-            System.out.println("el mes está mal");
-            cliInt.lbErrorCheckOutDate.setText("Ingrese solo números");
-            cliInt.lbErrorCheckOutDate.setForeground(Color.red);
-            dateOK = false;
-        } else if (!cliInt.tfCheckOutDate_Year.getText().matches("^20(2[5-9]|30)$")) {
-            System.out.println("el año está mal");
-            cliInt.lbErrorCheckOutDate.setText("Ingrese solo números");
-            cliInt.lbErrorCheckOutDate.setForeground(Color.red);
-            dateOK = false;
-        } else if () {
-
-        } else if (esFechaValida(Integer.parseInt(cliInt.tfCheckOutDate_Day.getText()), Integer.parseInt(cliInt.tfCheckOutDate_Month.getText()), Integer.parseInt(cliInt.tfCheckOutDate_Year.getText()))) {
+        } else if (!esFechaValida(Integer.parseInt(cliInt.tfCheckOutDate_Day.getText()), Integer.parseInt(cliInt.tfCheckOutDate_Month.getText()), Integer.parseInt(cliInt.tfCheckOutDate_Year.getText()))) {
             cliInt.lbErrorCheckOutDate.setText("Fecha inválida");
+            cliInt.lbErrorCheckOutDate.setForeground(Color.red);
+            dateOK = false;
+        } else if (cliInt.tfCheckOutDate_Year.getText().compareTo(cliInt.tfCheckInDate_Year.getText()) < 0
+                || (cliInt.tfCheckOutDate_Year.getText().compareTo(cliInt.tfCheckInDate_Year.getText()) == 0
+                && cliInt.tfCheckOutDate_Month.getText().compareTo(cliInt.tfCheckInDate_Month.getText()) < 0)
+                || (cliInt.tfCheckOutDate_Year.getText().compareTo(cliInt.tfCheckInDate_Year.getText()) == 0
+                && cliInt.tfCheckOutDate_Month.getText().compareTo(cliInt.tfCheckInDate_Month.getText()) == 0
+                && cliInt.tfCheckOutDate_Day.getText().compareTo(cliInt.tfCheckInDate_Day.getText()) < 0)) {//{ref1}
+            cliInt.lbErrorCheckOutDate.setText("Error: La fecha es menor");
             cliInt.lbErrorCheckOutDate.setForeground(Color.red);
             dateOK = false;
         } else {
             cliInt.lbErrorCheckOutDate.setText(" ");
         }
-
         return dateOK;
     }
 
@@ -197,9 +191,16 @@ public class OptionsRoomsController implements ActionListener {
             cliInt.dispose();
         } else if (e.getSource() == cliInt.btnSearch) {
             if (formatearFecha()) {
+                CreationOfRooms validateRooms = new CreationOfRooms();
+                validateRooms.confirmTheFileExists();//Se llama al método para verificar que el documento de las habitaciones exista.
                 roomsInTable();
             }
         }
 
     }
 }
+
+
+/*
+ref1: se utiliza el compareTo para comparar los valores Unicode de dos string, de esta manera se puede saber que número es menor o mayor sin tener que transformalo de string a formato número, y el <0 es para saber si el valor es menor.
+ */
