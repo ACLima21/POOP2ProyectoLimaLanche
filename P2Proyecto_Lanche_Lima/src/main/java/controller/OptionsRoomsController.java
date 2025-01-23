@@ -196,10 +196,8 @@ public class OptionsRoomsController implements ActionListener {
                 roomsInTable();
             }
         }
-
     }
 }
-
 
 /*
 ref1: se utiliza el compareTo para comparar los valores Unicode de dos string, de esta manera se puede saber que número es menor o mayor sin tener que transformalo de string a formato número, y el <0 es para saber si el valor es menor.
