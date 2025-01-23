@@ -175,7 +175,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         lbRoomType.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lbRoomType.setForeground(new java.awt.Color(61, 61, 61));
         lbRoomType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbRoomType.setText(" usuarioCliente");
+        lbRoomType.setText("tipo");
         lbRoomType.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         lbRoomType.setOpaque(true);
 
@@ -183,7 +183,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         lbPricePerNight.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lbPricePerNight.setForeground(new java.awt.Color(61, 61, 61));
         lbPricePerNight.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbPricePerNight.setText(" usuarioCliente");
+        lbPricePerNight.setText("precio por noche");
         lbPricePerNight.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         lbPricePerNight.setOpaque(true);
 
@@ -191,7 +191,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         lbCapacity.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lbCapacity.setForeground(new java.awt.Color(61, 61, 61));
         lbCapacity.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbCapacity.setText(" usuarioCliente");
+        lbCapacity.setText("capacidad de huéspedes");
         lbCapacity.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         lbCapacity.setOpaque(true);
 
@@ -203,7 +203,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         lbRoomSize.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lbRoomSize.setForeground(new java.awt.Color(61, 61, 61));
         lbRoomSize.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbRoomSize.setText(" usuarioCliente");
+        lbRoomSize.setText("tamaño en metros");
         lbRoomSize.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         lbRoomSize.setOpaque(true);
 
@@ -215,7 +215,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         lbAvailability.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lbAvailability.setForeground(new java.awt.Color(61, 61, 61));
         lbAvailability.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbAvailability.setText(" usuarioCliente");
+        lbAvailability.setText("si está disponible o no");
         lbAvailability.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         lbAvailability.setOpaque(true);
 
@@ -227,7 +227,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         lbServicesIncluded.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lbServicesIncluded.setForeground(new java.awt.Color(61, 61, 61));
         lbServicesIncluded.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbServicesIncluded.setText(" usuarioCliente");
+        lbServicesIncluded.setText("los servicios que tiene");
         lbServicesIncluded.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         lbServicesIncluded.setOpaque(true);
 

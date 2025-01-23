@@ -194,6 +194,8 @@ public class OptionsRoomsController implements ActionListener {
 
     public void sendToDetails() {
         if (cliInt.tbRoomInformation.getSelectedRow() >= 0) {//Para el caso en el que si se seleccionó una habitación
+            System.out.println("\n\n" + cliInt.tbRoomInformation.getValueAt(cliInt.tbRoomInformation.getSelectedRow(), 0).toString() + "\t" + cliInt.tbRoomInformation.getSelectedRow() + "\n\n");
+            rooms = new Rooms("", true, "", "", "", 0, "", "", "");
             rooms.setRoomName(cliInt.tbRoomInformation.getValueAt(cliInt.tbRoomInformation.getSelectedRow(), 0).toString());
 
             Document doc = createDocOfRooms(rooms.getRoomName()).get(0);//Ahora doc contiene los elementos de la habitación que se escogió.
