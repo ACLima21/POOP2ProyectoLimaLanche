@@ -85,7 +85,7 @@ public class CreationOfRooms {
 
     public void saveCSV(BufferedWriter bw, Rooms roomForSubmit) throws IOException {//Método para guardar la información en un archivo CSV
         bw.write(roomForSubmit.getRoomName() + "|"
-                + roomForSubmit.isAvailability() + "|"
+                + roomForSubmit.getAvailability() + "|"
                 + roomForSubmit.getCapacity() + "|"
                 + roomForSubmit.getDateRangeReservations() + "|"
                 + roomForSubmit.getExtraServices() + "|"

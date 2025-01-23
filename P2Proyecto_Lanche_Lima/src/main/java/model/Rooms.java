@@ -25,7 +25,7 @@ public class Rooms {
         return roomName;
     }
 
-    public boolean isAvailability() {
+    public boolean getAvailability() {
         return availability;
     }
 

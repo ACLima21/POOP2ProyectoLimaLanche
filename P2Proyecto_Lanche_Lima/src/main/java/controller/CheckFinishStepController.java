@@ -4,10 +4,10 @@ import view.CheckFinishStepInterfaz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WorkerController implements ActionListener {
+public class CheckFinishStepController implements ActionListener {
     private CheckFinishStepInterfaz view;
 
-    public WorkerController(CheckFinishStepInterfaz view) {
+    public CheckFinishStepController(CheckFinishStepInterfaz view) {
         this.view = view;
         this.view.btnConfirmReservation.addActionListener(this);
         this.view.btnSearch.addActionListener(this);

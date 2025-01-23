@@ -26,6 +26,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lbRoomName = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -93,6 +94,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(61, 61, 61));
         jLabel17.setText("Servicios extras:");
 
+        buttonGroup1.add(cbBreakfast);
         cbBreakfast.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cbBreakfast.setText("Desayuno");
         cbBreakfast.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +103,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(cbLunch);
         cbLunch.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cbLunch.setText("Almuerzo");
         cbLunch.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +112,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(cbDinner);
         cbDinner.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cbDinner.setText("Cena");
         cbDinner.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +121,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(cbParking);
         cbParking.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cbParking.setText("Estacionamiento");
         cbParking.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +130,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(cbTransport);
         cbTransport.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cbTransport.setText("Transporte");
         cbTransport.addActionListener(new java.awt.event.ActionListener() {
@@ -411,6 +417,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
     public javax.swing.JButton btnGetBack;
     public javax.swing.JButton btnMoreInformation;
     public javax.swing.JButton btnWantIt;
+    private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JCheckBox cbBreakfast;
     public javax.swing.JCheckBox cbDinner;
     public javax.swing.JCheckBox cbLunch;
@@ -429,7 +436,7 @@ public class DetailRoomInterfaz extends javax.swing.JFrame {
     public javax.swing.JLabel lbAvailability;
     public javax.swing.JLabel lbCapacity;
     public javax.swing.JLabel lbPricePerNight;
-    private javax.swing.JLabel lbRoomName;
+    public javax.swing.JLabel lbRoomName;
     public javax.swing.JLabel lbRoomSize;
     public javax.swing.JLabel lbRoomType;
     public javax.swing.JLabel lbServicesIncluded;

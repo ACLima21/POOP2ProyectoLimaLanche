@@ -1,12 +1,13 @@
 package controller;
 
-import java.awt.Color;
 import view.OptionsRoomsInterfaz;
 import view.LoginInterfaz;
 import view.DetailRoomInterfaz;
 import model.Rooms;
 import model.CreationOfRooms;
 import controller.DetailRoomController;
+import java.time.LocalDate;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -22,6 +23,7 @@ public class OptionsRoomsController implements ActionListener {
 
     protected OptionsRoomsInterfaz cliInt;
     protected Rooms rooms;
+    protected LocalDate date = LocalDate.now();
 
     public OptionsRoomsController(OptionsRoomsInterfaz cliInt) {
         this.cliInt = cliInt;
@@ -37,13 +39,21 @@ public class OptionsRoomsController implements ActionListener {
 
     public boolean esFechaValida(int dia, int mes, int anio) {
         // Comprobar si el mes está en el rango válido
+        if (anio == date.getYear()) {
+            if (mes < date.getMonthValue() || mes > 12) {
+                return false;
+            }
+
+            // Comprobar si el día está dentro del rango del mes
+            int diasMaximos = obtenerDiasMaximosDelMes(mes, anio);
+            return dia >= date.getDayOfMonth() && dia <= diasMaximos;
+        }
         if (mes < 1 || mes > 12) {
             return false;
         }
 
         // Comprobar si el día está dentro del rango del mes
         int diasMaximos = obtenerDiasMaximosDelMes(mes, anio);
-
         return dia >= 1 && dia <= diasMaximos;
     }
 
@@ -130,6 +140,10 @@ public class OptionsRoomsController implements ActionListener {
         }
     }
 
+    public int getStartAnio() {
+        return Character.getNumericValue(String.valueOf(date.getYear()).charAt(3));
+    }
+
     public boolean formatearFecha() {
         boolean dateOK = true;
 
@@ -148,7 +162,7 @@ public class OptionsRoomsController implements ActionListener {
             cliInt.lbErrorCheckInDate.setText("Ingrese solo números");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
             dateOK = false;
-        } else if (!cliInt.tfCheckInDate_Year.getText().matches("^20(2[5-9]|30)$")) {
+        } else if (!cliInt.tfCheckInDate_Year.getText().matches("^20(2[" + getStartAnio() + "-9]|30)$")) {
             System.out.println("el año está mal");
             cliInt.lbErrorCheckInDate.setText("Ingrese solo números");
             cliInt.lbErrorCheckInDate.setForeground(Color.red);
@@ -209,9 +223,12 @@ public class OptionsRoomsController implements ActionListener {
             rooms.setServicesIncluded(doc.get("ServicesIncluded").toString());
 
             DetailRoomInterfaz intDetail = new DetailRoomInterfaz();
-            DetailRoomController detailOfRoom = new DetailRoomController(intDetail, rooms);
+            DetailRoomController detailOfRoom = new DetailRoomController(intDetail, rooms, cliInt);
             detailOfRoom.startView();
+
+            cliInt.dispose();//Borra toda la memoria que se generó con la vista, también borra toda las hijas que se activaron desde allí.
         } else {//Para el caso en el que no se seleccione ninguna habitación
+            JOptionPane.showMessageDialog(cliInt, "Debe seleccionar una habitación para ver sus detalles", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -223,7 +240,6 @@ public class OptionsRoomsController implements ActionListener {
             cliInt.dispose();
         } else if (e.getSource() == cliInt.btnRoomDetails) {
             sendToDetails();
-            cliInt.dispose();
         } else if (e.getSource() == cliInt.btnSearch) {
             if (formatearFecha()) {
                 CreationOfRooms validateRooms = new CreationOfRooms();
