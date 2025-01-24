@@ -257,7 +257,9 @@ public class OptionsRoomsController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewOptionsRoomsInterfaz.btnLogin && viewOptionsRoomsInterfaz.btnLogin.getText().equals("Iniciar sesión")) {
-            LoginController loginController = new LoginController(null, rooms);
+            LoginInterfaz li = new LoginInterfaz();
+            Client clientForNow = new Client("", "", null, "", "", "", "");
+            LoginController loginController = new LoginController(li, null, clientForNow, rooms);
 
             loginController.iniciarView();
             viewOptionsRoomsInterfaz.dispose();
