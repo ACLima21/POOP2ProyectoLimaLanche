@@ -49,16 +49,19 @@ public class CheckFinishStepInterfaz extends javax.swing.JFrame {
         tbReservationResume.setForeground(new java.awt.Color(61, 61, 61));
         tbReservationResume.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Tipo", "Capacidad", "Precio por noche"
+                "Tipo", "Capacidad", "Precio por noche", "Fechas de entrada y salida", "Servicios Extras", "Total a pagar"
             }
         ));
         jScrollPane1.setViewportView(tbReservationResume);
+        if (tbReservationResume.getColumnModel().getColumnCount() > 0) {
+            tbReservationResume.getColumnModel().getColumn(3).setPreferredWidth(50);
+        }
 
         jPanel2.setBackground(new java.awt.Color(245, 236, 213));
 
