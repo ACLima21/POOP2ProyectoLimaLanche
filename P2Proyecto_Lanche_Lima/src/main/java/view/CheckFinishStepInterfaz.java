@@ -60,7 +60,9 @@ public class CheckFinishStepInterfaz extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbReservationResume);
         if (tbReservationResume.getColumnModel().getColumnCount() > 0) {
-            tbReservationResume.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tbReservationResume.getColumnModel().getColumn(2).setPreferredWidth(20);
+            tbReservationResume.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tbReservationResume.getColumnModel().getColumn(5).setPreferredWidth(20);
         }
 
         jPanel2.setBackground(new java.awt.Color(245, 236, 213));
@@ -93,7 +95,7 @@ public class CheckFinishStepInterfaz extends javax.swing.JFrame {
         btnDelete.setBackground(new java.awt.Color(87, 142, 126));
         btnDelete.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 250, 236));
-        btnDelete.setText("Eliminar");
+        btnDelete.setText("Cancelar");
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(61, 61, 61));

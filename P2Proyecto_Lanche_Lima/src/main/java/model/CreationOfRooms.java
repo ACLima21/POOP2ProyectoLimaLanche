@@ -30,7 +30,8 @@ public class CreationOfRooms {
                     + "PricePerNight|"
                     + "RoomSize|"
                     + "RoomType|"
-                    + "ServicesIncluded");//La escritura del archivo se realiza usando concetaciones
+                    + "ServicesIncluded"
+                    + "TotalToPay");//La escritura del archivo se realiza usando concetaciones
             bw.newLine();
             for (int i = 1; i <= 20; i++) {
                 System.out.println(String.format("Room%02d", i) + "\t también: " + i);
@@ -92,32 +93,33 @@ public class CreationOfRooms {
                 + roomForSubmit.getPricePerNight() + "|"
                 + roomForSubmit.getRoomSize() + "|"
                 + roomForSubmit.getRoomType() + "|"
-                + roomForSubmit.getServicesIncluded() + "");//La escritura del archivo se realiza usando concetaciones
+                + roomForSubmit.getServicesIncluded() + "|"
+                + roomForSubmit.getTotalToPay());//La escritura del archivo se realiza usando concetaciones
         bw.newLine();
     }
 
     // Método para cargar las habitaciones con la información predefinida
     private void loadRoomsData() {
-        roomsMap.put("Room01", new Rooms("Room01", true, "1 Huésped", "SN", "SN", 50, "3m x 5m", "Individual", "Wifi, Televisión, Escritorio"));
-        roomsMap.put("Room02", new Rooms("Room02", true, "1 Huésped", "SN", "SN", 55, "3m x 6m", "Individual Premium", "Wifi, Televisión, Aire acondicionado"));
-        roomsMap.put("Room03", new Rooms("Room03", true, "2 Huéspedes", "SN", "SN", 80, "4m x 5.5m", "Doble estándar", "Wifi, Televisión, Aire acondicionado"));
-        roomsMap.put("Room04", new Rooms("Room04", true, "2 Huéspedes", "SN", "SN", 90, "4m x 6.25m", "Doble con balcón", "Wifi, Televisión, Aire acondicionado, Balcón"));
-        roomsMap.put("Room05", new Rooms("Room05", true, "2 Huéspedes", "SN", "SN", 100, "4.5m x 6.25m", "Doble Premium", "Wifi, Televisión, Aire acondicionado, Balcón"));
-        roomsMap.put("Room06", new Rooms("Room06", true, "2 Huéspedes", "SN", "SN", 75, "4m x 5m", "Doble estándar", "Wifi, Televisión"));
-        roomsMap.put("Room07", new Rooms("Room07", true, "3 Huéspedes", "SN", "SN", 120, "5m x 7m", "Triple con balcón", "Wifi, Televisión, Aire acondicionado, Balcón"));
-        roomsMap.put("Room08", new Rooms("Room08", true, "3 Huéspedes", "SN", "SN", 110, "4.5m x 6.5m", "Triple estándar", "Wifi, Televisión, Aire acondicionado"));
-        roomsMap.put("Room09", new Rooms("Room09", true, "3 Huéspedes", "SN", "SN", 130, "5.5m x 7m", "Triple Premium", "Wifi, Televisión, Aire acondicionado, Cesta de Bienvenida"));
-        roomsMap.put("Room10", new Rooms("Room10", true, "4 Huéspedes", "SN", "SN", 150, "6m x 7.5m", "Cuádruple familiar", "Wifi, Televisión, Aire acondicionado"));
-        roomsMap.put("Room11", new Rooms("Room11", true, "4 Huéspedes", "SN", "SN", 165, "6m x 8.5m", "Cuádruple con balcón", "Wifi, Televisión, Aire acondicionado, Balcón"));
-        roomsMap.put("Room12", new Rooms("Room12", true, "4 Huéspedes", "SN", "SN", 160, "6m x 8m", "Cuádruple Premium", "Wifi, Televisión, Aire acondicionado, Balcón, Cesta de Bienvenida"));
-        roomsMap.put("Room13", new Rooms("Room13", true, "4 Huéspedes", "SN", "SN", 140, "5.5m x 7.5m", "Cuádruple estándar", "Wifi, Televisión"));
-        roomsMap.put("Room14", new Rooms("Room14", true, "4 Huéspedes", "SN", "SN", 145, "5.5m x 7.5m", "Cuádruple familiar", "Wifi, Televisión, Aire acondicionado"));
-        roomsMap.put("Room15", new Rooms("Room15", true, "5 Huéspedes", "SN", "SN", 180, "6.5m x 8.5m", "Suite familiar", "Wifi, Televisión, Aire acondicionado, Cesta de Bienvenida"));
-        roomsMap.put("Room16", new Rooms("Room16", true, "5 Huéspedes", "SN", "SN", 200, "7m x 8.5m", "Suite Premium", "Wifi, Televisión, Aire acondicionado, Balcón, Escritorio"));
-        roomsMap.put("Room17", new Rooms("Room17", true, "5 Huéspedes", "SN", "SN", 175, "6.5m x 8m", "Suite estándar", "Wifi, Televisión, Aire acondicionado"));
-        roomsMap.put("Room18", new Rooms("Room18", true, "5 Huéspedes", "SN", "SN", 190, "6.5m x 9m", "Suite con balcón", "Wifi, Televisión, Aire acondicionado, Balcón"));
-        roomsMap.put("Room19", new Rooms("Room19", true, "5 Huéspedes", "SN", "SN", 185, "6.5m x 8.5m", "Suite Deluxe", "Wifi, Televisión, Aire acondicionado, Balcón"));
-        roomsMap.put("Room20", new Rooms("Room20", true, "5 Huéspedes", "SN", "SN", 210, "7m x 9.5m", "Suite Master", "Wifi, Televisión, Aire acondicionado, Balcón, Escritorio"));
+        roomsMap.put("Room01", new Rooms("Room01", true, "1 Huésped", "SN", "SN", 50, "3m x 5m", "Individual", "Wifi, Televisión, Escritorio", 0));
+        roomsMap.put("Room02", new Rooms("Room02", true, "1 Huésped", "SN", "SN", 55, "3m x 6m", "Individual Premium", "Wifi, Televisión, Aire acondicionado", 0));
+        roomsMap.put("Room03", new Rooms("Room03", true, "2 Huéspedes", "SN", "SN", 80, "4m x 5.5m", "Doble estándar", "Wifi, Televisión, Aire acondicionado", 0));
+        roomsMap.put("Room04", new Rooms("Room04", true, "2 Huéspedes", "SN", "SN", 90, "4m x 6.25m", "Doble con balcón", "Wifi, Televisión, Aire acondicionado, Balcón", 0));
+        roomsMap.put("Room05", new Rooms("Room05", true, "2 Huéspedes", "SN", "SN", 100, "4.5m x 6.25m", "Doble Premium", "Wifi, Televisión, Aire acondicionado, Balcón", 0));
+        roomsMap.put("Room06", new Rooms("Room06", true, "2 Huéspedes", "SN", "SN", 75, "4m x 5m", "Doble estándar", "Wifi, Televisión", 0));
+        roomsMap.put("Room07", new Rooms("Room07", true, "3 Huéspedes", "SN", "SN", 120, "5m x 7m", "Triple con balcón", "Wifi, Televisión, Aire acondicionado, Balcón", 0));
+        roomsMap.put("Room08", new Rooms("Room08", true, "3 Huéspedes", "SN", "SN", 110, "4.5m x 6.5m", "Triple estándar", "Wifi, Televisión, Aire acondicionado", 0));
+        roomsMap.put("Room09", new Rooms("Room09", true, "3 Huéspedes", "SN", "SN", 130, "5.5m x 7m", "Triple Premium", "Wifi, Televisión, Aire acondicionado, Cesta de Bienvenida", 0));
+        roomsMap.put("Room10", new Rooms("Room10", true, "4 Huéspedes", "SN", "SN", 150, "6m x 7.5m", "Cuádruple familiar", "Wifi, Televisión, Aire acondicionado", 0));
+        roomsMap.put("Room11", new Rooms("Room11", true, "4 Huéspedes", "SN", "SN", 165, "6m x 8.5m", "Cuádruple con balcón", "Wifi, Televisión, Aire acondicionado, Balcón", 0));
+        roomsMap.put("Room12", new Rooms("Room12", true, "4 Huéspedes", "SN", "SN", 160, "6m x 8m", "Cuádruple Premium", "Wifi, Televisión, Aire acondicionado, Balcón, Cesta de Bienvenida", 0));
+        roomsMap.put("Room13", new Rooms("Room13", true, "4 Huéspedes", "SN", "SN", 140, "5.5m x 7.5m", "Cuádruple estándar", "Wifi, Televisión", 0));
+        roomsMap.put("Room14", new Rooms("Room14", true, "4 Huéspedes", "SN", "SN", 145, "5.5m x 7.5m", "Cuádruple familiar", "Wifi, Televisión, Aire acondicionado", 0));
+        roomsMap.put("Room15", new Rooms("Room15", true, "5 Huéspedes", "SN", "SN", 180, "6.5m x 8.5m", "Suite familiar", "Wifi, Televisión, Aire acondicionado, Cesta de Bienvenida", 0));
+        roomsMap.put("Room16", new Rooms("Room16", true, "5 Huéspedes", "SN", "SN", 200, "7m x 8.5m", "Suite Premium", "Wifi, Televisión, Aire acondicionado, Balcón, Escritorio", 0));
+        roomsMap.put("Room17", new Rooms("Room17", true, "5 Huéspedes", "SN", "SN", 175, "6.5m x 8m", "Suite estándar", "Wifi, Televisión, Aire acondicionado", 0));
+        roomsMap.put("Room18", new Rooms("Room18", true, "5 Huéspedes", "SN", "SN", 190, "6.5m x 9m", "Suite con balcón", "Wifi, Televisión, Aire acondicionado, Balcón", 0));
+        roomsMap.put("Room19", new Rooms("Room19", true, "5 Huéspedes", "SN", "SN", 185, "6.5m x 8.5m", "Suite Deluxe", "Wifi, Televisión, Aire acondicionado, Balcón", 0));
+        roomsMap.put("Room20", new Rooms("Room20", true, "5 Huéspedes", "SN", "SN", 210, "7m x 9.5m", "Suite Master", "Wifi, Televisión, Aire acondicionado, Balcón, Escritorio", 0));
     }
 }
 

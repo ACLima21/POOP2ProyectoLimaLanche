@@ -7,10 +7,12 @@ public class Client extends Person implements InterfaceClient {
 
     private String username, password;
     private ArrayList<String> roomsNames;
+    private double totalToPay;
 
     // constructor
     public Client(String username, String password, ArrayList<String> roomsNames, String fullName, String email, String address, String phone) {
         super(fullName, email, address, phone);
+        this.totalToPay = totalToPay;
         this.username = username;
         this.password = password;
         this.roomsNames = roomsNames;
@@ -48,7 +50,7 @@ public class Client extends Person implements InterfaceClient {
 
     @Override
     public void reservationDone() {
-        JOptionPane.showMessageDialog(null, "Gracias por su reserva " + getUsername() + "\nQue disfrute su estancia", "RESERVA EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Gracias por su reserva " + getUsername() + "! c:\nSe le envió a su correo \"" + getEmail() + "\" el pago para la reservación.", "RESERVA EXITOSA", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

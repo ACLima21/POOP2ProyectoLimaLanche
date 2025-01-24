@@ -23,10 +23,12 @@ public class CheckFinishStepController implements ActionListener {
     protected Client client;
     protected connectionMongoDB mongo = new connectionMongoDB();
     protected CheckFinishStepInterfaz checkFinishStepInterfaz;
+    protected boolean newUser;
 
-    public CheckFinishStepController(Rooms rooms, Client client, CheckFinishStepInterfaz checkFinishStepInterfaz) {
+    public CheckFinishStepController(Rooms rooms, Client client, boolean newUser, CheckFinishStepInterfaz checkFinishStepInterfaz) {
         this.rooms = rooms;
         this.client = client;
+        this.newUser = newUser;
         this.checkFinishStepInterfaz = checkFinishStepInterfaz;
         this.checkFinishStepInterfaz.btnConfirmReservation.addActionListener(this);
         this.checkFinishStepInterfaz.btnSearch.addActionListener(this);
@@ -38,10 +40,13 @@ public class CheckFinishStepController implements ActionListener {
 
     public void iniciarView() {
         checkFinishStepInterfaz.setVisible(true);
-        loadDataForReservation();
+
+        if (newUser) {
+            loadDataForReservation();
+        }
     }
 
-    public double totalToPay() {
+    public void totalToPay() {
         // Dividir el String en dos fechas
         String[] dates = rooms.getDateRangeReservations().split("/");
         String startDateStr = dates[0];
@@ -55,10 +60,11 @@ public class CheckFinishStepController implements ActionListener {
 
         int nights = (int) ChronoUnit.DAYS.between(startDate, endDate);// Calculo de la diferencia en días y casteado a entero
 
-        return rooms.getPricePerNight() * nights;
+        rooms.setTotalToPay(rooms.getPricePerNight() * nights);
     }
 
     public void loadDataForReservation() {
+        checkFinishStepInterfaz.btnSearch.setEnabled(false);
         DefaultTableModel tableModel = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
         tableModel.setRowCount(0);//Limpia todas las filas de la tabla
 
@@ -70,7 +76,7 @@ public class CheckFinishStepController implements ActionListener {
             rooms.getPricePerNight(),
             rooms.getDateRangeReservations(),
             rooms.getExtraServices(),
-            totalToPay()
+            rooms.getTotalToPay()
         };
         tableModel.addRow(row);
 
@@ -79,23 +85,56 @@ public class CheckFinishStepController implements ActionListener {
         System.out.println("Se cargó la tabla");
     }
 
-    public void addRoomToClient() {
-        if (checkFinishStepInterfaz.btnConfirmReservation.getText() == "Confirmar") {
-            checkFinishStepInterfaz.btnConfirmReservation.setText("Agregar");
-            ArrayList<String> roomToAdd = new ArrayList<>();
-            roomToAdd = client.getRoomsNames();
-            roomToAdd.add(rooms.getRoomName());
-            client.setRoomsNames(roomToAdd);
-            Document doc = new Document("Username", client.getUsername())
-                    .append("Password", client.getPassword())
-                    .append("Email", client.getEmail())
-                    .append("Phone", client.getPhone())
-                    .append("FullName", client.getFullName())
-                    .append("Address", client.getAddress())
-                    .append("Reservations", client.getRoomsNames());
-            mongo.insertUsuario(doc);
+    public void addClientWithReservationsToMongo() {
+        ArrayList<String> roomToAdd = new ArrayList<>();//variable para guardar las habitaciones
+        roomToAdd = client.getRoomsNames();//Primero se agregan todas las que ya tenía el cliente reservadas
+        roomToAdd.add(rooms.getRoomName());//Ahora se agrega la reserva actual del cliente
+        client.setRoomsNames(roomToAdd);//se actualiza el cliente con todas sus reservaciones
 
-        } else if (checkFinishStepInterfaz.btnConfirmReservation.getText() == "Agregar") {
+        Document doc = new Document("Username", client.getUsername())
+                .append("Password", client.getPassword())
+                .append("Email", client.getEmail())
+                .append("Phone", client.getPhone())
+                .append("FullName", client.getFullName())
+                .append("Address", client.getAddress())
+                .append("Reservations", client.getRoomsNames());
+        mongo.insertUsuario(doc);
+    }
+
+    public void addClientWithReservationsToTable() {
+        DefaultTableModel modelo = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
+        OptionsRoomsController optionsRoomsController = new OptionsRoomsController(null);
+        modelo.setRowCount(0);
+        for (String room : client.getRoomsNames()) {
+            for (Document doc : optionsRoomsController.createDocOfRooms(room)) {
+                if (Boolean.parseBoolean(doc.get("Availability").toString())) {//Si la habitación está disponible entonces se obtiene sus datos y se agregan a la tabla
+                    Object[] row = {
+                        doc.get("RoomName"),
+                        doc.get("RoomType"),
+                        doc.get("PricePerNight"),
+                        doc.get("DateRangeReservations"),
+                        doc.get("ExtraServices"),
+                        doc.get("TotalToPay")};
+                    modelo.addRow(row);
+                }
+            }
+        }
+        checkFinishStepInterfaz.tbReservationResume.setModel(modelo);
+        System.out.println("\n\nSe cargó la tabla\n\n");
+    }
+
+    public void addRoomToClient() {
+        if ("Confirmar".equals(checkFinishStepInterfaz.btnConfirmReservation.getText())) {
+            //INICIOS
+            checkFinishStepInterfaz.btnConfirmReservation.setText("Agregar");
+            checkFinishStepInterfaz.btnSearch.setEnabled(true);
+            client.reservationDone();
+
+            addClientWithReservationsToMongo();
+
+            addClientWithReservationsToTable();
+
+        } else if ("Agregar".equals(checkFinishStepInterfaz.btnConfirmReservation.getText())) {
 
         }
 
@@ -141,7 +180,9 @@ public class CheckFinishStepController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == checkFinishStepInterfaz.btnConfirmReservation) {
-            addRoomToClient();
+            if (newUser) {
+                addRoomToClient();
+            }
         } else if (e.getSource() == checkFinishStepInterfaz.btnSearch) {
         } else if (e.getSource() == checkFinishStepInterfaz.btnModify) {
         } else if (e.getSource() == checkFinishStepInterfaz.btnDelete) {

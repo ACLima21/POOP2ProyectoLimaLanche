@@ -4,11 +4,11 @@ public class Rooms {
 
     private String roomName, dateRangeReservations, extraServices, roomSize, roomType, servicesIncluded, capacity;
     private boolean availability;
-    private double pricePerNight;
+    private double pricePerNight, totalToPay;
 
     // Constructor
     public Rooms(String roomName, boolean availability, String capacity, String dateRangeReservations,
-            String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded) {
+            String extraServices, double pricePerNight, String roomSize, String roomType, String servicesIncluded, double totalToPay) {
         this.roomName = roomName;
         this.availability = availability;
         this.capacity = capacity;
@@ -18,9 +18,18 @@ public class Rooms {
         this.roomSize = roomSize;
         this.roomType = roomType;
         this.servicesIncluded = servicesIncluded;
+        this.totalToPay = totalToPay;
     }
 
     // Getters and Setters
+    public double getTotalToPay() {
+        return totalToPay;
+    }
+
+    public void setTotalToPay(double totalToPay) {
+        this.totalToPay = totalToPay;
+    }
+
     public String getRoomName() {
         return roomName;
     }

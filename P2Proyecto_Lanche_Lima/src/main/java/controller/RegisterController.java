@@ -57,7 +57,7 @@ public class RegisterController implements ActionListener {
         );
         modelClient.login();
         CheckFinishStepInterfaz checkFinishStepInterfaz = new CheckFinishStepInterfaz();
-        checkFinishStepController = new CheckFinishStepController(rooms, modelClient, checkFinishStepInterfaz);
+        checkFinishStepController = new CheckFinishStepController(rooms, modelClient, true, checkFinishStepInterfaz);
         checkFinishStepController.iniciarView();
 
         viewRegister.dispose();
