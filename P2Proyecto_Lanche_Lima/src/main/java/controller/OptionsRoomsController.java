@@ -123,7 +123,7 @@ public class OptionsRoomsController implements ActionListener {
                             .append("RoomSize", line.split("\\|")[6])
                             .append("RoomType", line.split("\\|")[7])
                             .append("ServicesIncluded", line.split("\\|")[8])
-                            .append("TotalToPay", line.split("\\|")[9]);
+                            .append("TotalToPay", line.split("\\|")[8]);
                     documents.add(searchedRoomsDoc);
                 }
             }
@@ -137,6 +137,7 @@ public class OptionsRoomsController implements ActionListener {
         DefaultTableModel modeloTabla = (DefaultTableModel) viewOptionsRoomsInterfaz.tbRoomInformation.getModel();
         modeloTabla.setRowCount(0);//Limpia todas las filas de la tabla
         // Iterar sobre los documentos y añadir filas al modelo de la tabla
+        System.out.println("TEST"+viewOptionsRoomsInterfaz.cbGuests.getSelectedItem().toString());
         for (Document doc : createDocOfRooms(viewOptionsRoomsInterfaz.cbGuests.getSelectedItem().toString())) {
             if (Boolean.parseBoolean(doc.get("Availability").toString())) {//Si la habitación está disponible entonces se obtiene sus datos y se agregan a la tabla
                 Object[] row = {
