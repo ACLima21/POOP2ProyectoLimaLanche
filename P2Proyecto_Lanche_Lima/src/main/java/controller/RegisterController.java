@@ -72,7 +72,7 @@ public class RegisterController implements ActionListener {
 
     public boolean newUser(String str, Object obj) {
         Document filtro = new Document(str, obj);
-        ArrayList<Document> resultados = new ArrayList<>(mongo.searchSelector(filtro));
+        ArrayList<Document> resultados = new ArrayList<>(mongo.searchDocument(filtro));
         return resultados.isEmpty();
     }
 

@@ -54,7 +54,7 @@ public class DetailRoomController implements ActionListener, ItemListener {
     }
 
     public void getBack() {
-        OptionsRoomsController optionsRoomsController = new OptionsRoomsController(optionsRoomsInterfaz);
+        OptionsRoomsController optionsRoomsController = new OptionsRoomsController(optionsRoomsInterfaz, true, null, null, null);
 
         optionsRoomsController.startView();
         detRooInt.dispose();//Borra toda la memoria que se generó con la vista, también borra toda las hijas que se activaron desde allí.

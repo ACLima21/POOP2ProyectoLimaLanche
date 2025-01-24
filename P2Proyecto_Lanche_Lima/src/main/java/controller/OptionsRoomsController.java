@@ -3,10 +3,10 @@ package controller;
 import view.OptionsRoomsInterfaz;
 import view.LoginInterfaz;
 import view.DetailRoomInterfaz;
+import view.CheckFinishStepInterfaz;
 import model.Rooms;
+import model.Client;
 import model.CreationOfRooms;
-import controller.DetailRoomController;
-import controller.LoginController;
 import java.time.LocalDate;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -24,10 +24,17 @@ public class OptionsRoomsController implements ActionListener {
 
     protected OptionsRoomsInterfaz viewOptionsRoomsInterfaz;
     protected Rooms rooms;
+    protected Client client;
     protected LocalDate date = LocalDate.now();
+    protected boolean newUser;
+    protected CheckFinishStepInterfaz cfsi = new CheckFinishStepInterfaz();
 
-    public OptionsRoomsController(OptionsRoomsInterfaz viewOptionsRoomsInterfaz) {
+    public OptionsRoomsController(OptionsRoomsInterfaz viewOptionsRoomsInterfaz, boolean newUser, CheckFinishStepInterfaz cfsi, Rooms rooms, Client client) {
+        this.newUser = newUser;
         this.viewOptionsRoomsInterfaz = viewOptionsRoomsInterfaz;
+        this.cfsi = cfsi;
+        this.rooms = rooms;
+        this.client = client;
         this.viewOptionsRoomsInterfaz.btnLogin.addActionListener(this);
         this.viewOptionsRoomsInterfaz.btnRoomDetails.addActionListener(this);
         this.viewOptionsRoomsInterfaz.btnSearch.addActionListener(this);
@@ -36,6 +43,12 @@ public class OptionsRoomsController implements ActionListener {
     public void startView() {
         viewOptionsRoomsInterfaz.setVisible(true);
         limpiarValidadores();
+
+        if (newUser) {
+            viewOptionsRoomsInterfaz.btnLogin.setText("Iniciar sesión");
+        } else {
+            viewOptionsRoomsInterfaz.btnLogin.setText("Ver Reservaciones");
+        }
     }
 
     public boolean esFechaValida(int dia, int mes, int anio) {
@@ -242,12 +255,14 @@ public class OptionsRoomsController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == viewOptionsRoomsInterfaz.btnLogin) {
-
+        if (e.getSource() == viewOptionsRoomsInterfaz.btnLogin && viewOptionsRoomsInterfaz.btnLogin.getText().equals("Iniciar sesión")) {
             LoginController loginController = new LoginController(null, rooms);
 
             loginController.iniciarView();
             viewOptionsRoomsInterfaz.dispose();
+        } else if (e.getSource() == viewOptionsRoomsInterfaz.btnLogin && viewOptionsRoomsInterfaz.btnLogin.getText().equals("Ver Reservaciones")) {
+            CheckFinishStepController cfsc = new CheckFinishStepController(rooms, client, false, cfsi);
+            cfsc.iniciarView();
         } else if (e.getSource() == viewOptionsRoomsInterfaz.btnRoomDetails) {
             sendToDetails();
         } else if (e.getSource() == viewOptionsRoomsInterfaz.btnSearch) {

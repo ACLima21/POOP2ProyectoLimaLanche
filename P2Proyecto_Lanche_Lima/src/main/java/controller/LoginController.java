@@ -29,6 +29,7 @@ public class LoginController implements ActionListener {
 
         this.viewLogin.btnSignUp.addActionListener(this);
         this.viewLogin.btnSignIn.addActionListener(this);
+        this.viewLogin.btnForgotPassword.addActionListener(this);
     }
 
     public void setModelClient(Client modelClient) {
@@ -79,7 +80,7 @@ public class LoginController implements ActionListener {
             viewLogin.lbErrorUsername.setText(" ");
 
             Document filtro = new Document("Username", viewLogin.tfUsername.getText());
-            ArrayList<Document> resultados = new ArrayList<>(mongo.searchSelector(filtro));
+            ArrayList<Document> resultados = new ArrayList<>(mongo.searchDocument(filtro));
             if (!resultados.isEmpty()) {
                 Document doc = resultados.get(0); // Obtener el primer documento
                 setModelClient(new Client(doc.getString("Username"), doc.getString("Password"), new ArrayList<>(), doc.getString("FullName"), doc.getString("Email"), doc.getString("Address"), doc.getString("Phone")));
@@ -96,6 +97,77 @@ public class LoginController implements ActionListener {
         return allGood;
     }
 
+    public boolean validationGiveCredentials() {
+        ArrayList<Document> resultados;
+        Document filtro;
+        boolean giveIt = true, continueSearch;
+        String[] options = {"Email", "Teléfono"};
+        int optionIndex = JOptionPane.showOptionDialog(viewLogin, "Escoja como desea recuperar la contraseña\nSi no funciona ninguna de las opciones póngase en contacto con algún administrador", "Recuperar Contraseña", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        switch (optionIndex) {
+            case 0://Email
+                String emailToCheck = JOptionPane.showInputDialog(viewLogin, "Ingrese su email para recuperar sus credenciales:", "Recuperar con email", JOptionPane.QUESTION_MESSAGE);
+                if (emailToCheck != null) {
+                    filtro = new Document("Email", emailToCheck);
+                    continueSearch = false;
+                    do {
+                        giveIt = true;
+                        resultados = mongo.searchDocument(filtro);
+                        if (!resultados.isEmpty()) {
+                            Document doc = resultados.get(0); // Obtener el primer documento
+                            JOptionPane.showMessageDialog(viewLogin, "Usted ha solicitado sus credenciales via email,\nsus credenciales son:\nUsername: " + doc.getString("Username") + "\nPassword: " + doc.getString("Password"), "CORREO RECIBIDO", JOptionPane.INFORMATION_MESSAGE);
+                            System.out.println("Email encontrado: " + doc.getString("Email") + ". En " + resultados.size() + " resultados.");
+                            return giveIt;
+                        } else {
+                            System.out.println("\n\n----->No se encontraron resultados.<-----\n\n");
+                            giveIt = false;
+                            continueSearch = !continueSearch;
+                        }
+                    } while (continueSearch);
+
+                    if (!giveIt) {
+                        JOptionPane.showMessageDialog(viewLogin, "El correo ingresado no existe en nuestra base de datos, intente\nde nuevo por favor.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    giveIt = false;
+                }
+
+                break;
+            case 1://Telefono
+                String phoneToCheck = JOptionPane.showInputDialog(viewLogin, "Ingrese su número de teléfono para recuperar sus credenciales:", "Recuperar con Teléfono", JOptionPane.QUESTION_MESSAGE);
+
+                if (phoneToCheck != null) {
+                    filtro = new Document("Phone", phoneToCheck);
+                    continueSearch = false;
+                    do {
+                        giveIt = true;
+                        resultados = mongo.searchDocument(filtro);
+                        if (!resultados.isEmpty()) {
+                            Document doc = resultados.get(0); // Obtener el primer documento
+                            JOptionPane.showMessageDialog(viewLogin, "Usted ha solicitado sus credenciales via sms,\nsus credenciales son:\nUsername: " + doc.getString("Username") + "\nPassword: " + doc.getString("Password"), "MENSAJE DE TEXTO", JOptionPane.INFORMATION_MESSAGE);
+                            System.out.println("Teléfono encontrado: " + doc.getString("Phone") + ". En " + resultados.size() + " resultados.");
+                            return giveIt;
+                        } else {
+                            System.out.println("\n\n----->No se encontraron resultados.<-----\n\n");
+                            giveIt = false;
+                            continueSearch = !continueSearch;
+                        }
+                    } while (continueSearch);
+
+                    if (!giveIt) {
+                        JOptionPane.showMessageDialog(viewLogin, "El teléfono ingresado no existe en nuestra base de datos, intente\nde nuevo por favor.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    giveIt = false;
+                }
+                break;
+            case -1://nada
+                System.out.println("\n\nNO SE SELECCIONÓ NADA\n\n");
+                giveIt = false;
+                break;
+        }
+        return giveIt;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == viewLogin.btnSignUp) {
@@ -109,9 +181,14 @@ public class LoginController implements ActionListener {
             viewLogin.setVisible(false);
         } else if (e.getSource() == viewLogin.btnSignIn) {
             if (validationUser()) {
-                JOptionPane.showMessageDialog(viewLogin, "¡Inicio de sesión exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                modelClient.login();
                 viewLogin.setVisible(false);
             }
+        } else if (e.getSource() == viewLogin.btnForgotPassword) {
+            validationGiveCredentials();
+            validatorsCleaner();
+            viewLogin.tfUsername.setText("");
+            viewLogin.pfPassword.setText("");
         }
     }
 }

@@ -3,6 +3,7 @@ package controller;
 import com.mongodb.client.MongoCollection;
 import java.awt.Color;
 import view.CheckFinishStepInterfaz;
+import view.OptionsRoomsInterfaz;
 import model.Rooms;
 import model.Client;
 import model.connectionMongoDB;
@@ -40,9 +41,11 @@ public class CheckFinishStepController implements ActionListener {
 
     public void iniciarView() {
         checkFinishStepInterfaz.setVisible(true);
-
         if (newUser) {
             loadDataForReservation();
+            checkFinishStepInterfaz.btnConfirmReservation.setText("Confirmar");
+        } else {
+            checkFinishStepInterfaz.btnConfirmReservation.setText("Agregar");
         }
     }
 
@@ -103,7 +106,7 @@ public class CheckFinishStepController implements ActionListener {
 
     public void addClientWithReservationsToTable() {
         DefaultTableModel modelo = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
-        OptionsRoomsController optionsRoomsController = new OptionsRoomsController(null);
+        OptionsRoomsController optionsRoomsController = new OptionsRoomsController(null, false, null, null, null);//instancia solo para usar el método createDocOfRooms
         modelo.setRowCount(0);
         for (String room : client.getRoomsNames()) {
             for (Document doc : optionsRoomsController.createDocOfRooms(room)) {
@@ -126,7 +129,6 @@ public class CheckFinishStepController implements ActionListener {
     public void addRoomToClient() {
         if ("Confirmar".equals(checkFinishStepInterfaz.btnConfirmReservation.getText())) {
             //INICIOS
-            checkFinishStepInterfaz.btnConfirmReservation.setText("Agregar");
             checkFinishStepInterfaz.btnSearch.setEnabled(true);
             client.reservationDone();
 
@@ -135,48 +137,14 @@ public class CheckFinishStepController implements ActionListener {
             addClientWithReservationsToTable();
 
         } else if ("Agregar".equals(checkFinishStepInterfaz.btnConfirmReservation.getText())) {
+            OptionsRoomsInterfaz optionsRoomsInterfaz = new OptionsRoomsInterfaz();
+            OptionsRoomsController optionsRoomsController = new OptionsRoomsController(optionsRoomsInterfaz, false, checkFinishStepInterfaz, rooms, client);
+            optionsRoomsController.startView();
 
+            checkFinishStepInterfaz.dispose();
         }
-
     }
 
-    /*public void searchReservations() {
-        MongoCollection<Document> mongoCollection = mongo.getMongoDB().getCollection("Estudiantes");
-
-        if (mongoCollection.countDocuments() != 0) {//si existen documentos en la collección
-            if (checkFinishStepInterfaz.btnSearch.getText().equals("Buscar")) {//Si el botón tiene ese texto
-                String roomToSearch = JOptionPane.showInputDialog(checkFinishStepInterfaz, "Ingrese la habitación a buscar:", "BÚSQUEDA DE LA HABITACIÓN", JOptionPane.QUESTION_MESSAGE);//El JOption recibe el string de la habitación a Buscar
-                Document credentialsDocToSearch = new Document("RoomName", roomToSearch);
-                Document documentWithAllInformation = (Document) mongo.searchSelector(credentialsDocToSearch).get(0);
-                if (!documentWithAllInformation.isEmpty()) {//Si el documento no está vacío
-                    DefaultTableModel modelo = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
-                    modelo.setRowCount(0);
-                    modelo.addRow(new Object[]{
-                        documentWithAllInformation.getString("RoomType"),
-                        documentWithAllInformation.getString("Capacity"),
-                        documentWithAllInformation.getInteger("PricePerNight")
-                    });
-                    checkFinishStepInterfaz.btnSearch.setText("Refrescar");
-                    checkFinishStepInterfaz.btnSearch.setForeground(new Color(200, 144, 167));
-                    checkFinishStepInterfaz.btnSearch.setBackground(new Color(33, 33, 33));
-                    checkFinishStepInterfaz.tbReservationResume.setModel(modelo);
-                } else {//Si el documento está vacío
-                    JOptionPane.showMessageDialog(checkFinishStepInterfaz, "El estudiante no se encontró en la base de datos", "Búsqueda", JOptionPane.WARNING_MESSAGE);
-                    loadDataTable();
-                }
-
-            } else if (checkFinishStepInterfaz.btnSearch.getText().equals("Refrescar")) {//Si el botón tiene este otro texto
-                checkFinishStepInterfaz.btnSearch.setText("Buscar");
-                checkFinishStepInterfaz.btnSearch.setForeground(new Color(33, 33, 33));
-                checkFinishStepInterfaz.btnSearch.setBackground(new Color(200, 144, 167));
-                loadDataTable();
-            } else {
-                System.out.println("\n\nError, el botón no tiene el texto esperado\n\n");
-            }
-        } else {//Si no existen documentos en la collección
-            JOptionPane.showMessageDialog(checkFinishStepInterfaz, "La base de datos está vacía, no se puede realizar esta opción.");
-        }
-    }*/
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == checkFinishStepInterfaz.btnConfirmReservation) {

@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class connectionMongoDB {
+
     private final String dataBaseName = "ReservasHoteles";
     private final MongoClient client;
     private final MongoDatabase mongoDB;
-    public static String collectionName = "usuarios"; 
+    public static String collectionName = "usuarios";
 
     public connectionMongoDB() {
         client = MongoClients.create("mongodb://localhost:27017");
@@ -55,14 +56,20 @@ public class connectionMongoDB {
         }
     }
 
-    public List<Document> searchSelector(Bson filter) {
-        List<Document> results = new ArrayList<>();
+    public ArrayList<Document> searchDocument(Document filtro) {
+        MongoDatabase db = createConnection();
         try {
-            getCollection().find(filter).into(results);
+            MongoCollection<Document> collection = db.getCollection(collectionName);
+            ArrayList resultados = new ArrayList<>();
+            for (Document doc : collection.find(filtro)) {
+                resultados.add(doc);
+            }
+            System.out.println("\n\n--->>>DATOS BUSCADOS EN LA DB CON EXITO<<<---\n\n");
+            return resultados;
         } catch (MongoException e) {
-            System.out.println("\n\n--->>>> Error en la búsqueda: " + e.getMessage() + " <<<<----\n\n");
+            System.out.println("\n\n--->>>ERROR AL BUSCAR EN LA DB<<<---\n\n");
             e.printStackTrace();
         }
-        return results;
+        return null;
     }
 }

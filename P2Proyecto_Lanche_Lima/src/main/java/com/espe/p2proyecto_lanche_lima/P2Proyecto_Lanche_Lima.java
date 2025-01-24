@@ -8,7 +8,7 @@ public class P2Proyecto_Lanche_Lima {
 
     public static void main(String[] args) {
         OptionsRoomsInterfaz login = new OptionsRoomsInterfaz();
-        OptionsRoomsController optRooController = new OptionsRoomsController(login);
+        OptionsRoomsController optRooController = new OptionsRoomsController(login, true, null, null, null);
         CreationOfRooms creatRooms = new CreationOfRooms();
 
         creatRooms.confirmTheFileExists();
