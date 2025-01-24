@@ -5,6 +5,7 @@ import model.Client;
 import model.Rooms;
 import view.LoginInterfaz;
 import view.RegisterInterfaz;
+import view.CheckFinishStepInterfaz;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,10 +22,11 @@ public class LoginController implements ActionListener {
     protected Rooms rooms;
     private connectionMongoDB mongo = new connectionMongoDB();
 
-    public LoginController(RegisterInterfaz viewRegister, Rooms rooms) {
+    public LoginController(LoginInterfaz viewLogin, RegisterInterfaz viewRegister, Client modelClient, Rooms rooms) {
         this.rooms = rooms;
         this.viewLogin = viewLogin;
         this.viewRegister = viewRegister;
+        this.modelClient = modelClient;
         mongo.createConnection();
 
         this.viewLogin.btnSignUp.addActionListener(this);
@@ -83,7 +85,7 @@ public class LoginController implements ActionListener {
             ArrayList<Document> resultados = new ArrayList<>(mongo.searchDocument(filtro));
             if (!resultados.isEmpty()) {
                 Document doc = resultados.get(0); // Obtener el primer documento
-                setModelClient(new Client(doc.getString("Username"), doc.getString("Password"), new ArrayList<>(), doc.getString("FullName"), doc.getString("Email"), doc.getString("Address"), doc.getString("Phone")));
+                setModelClient(new Client(doc.getString("Username"), doc.getString("Password"), (ArrayList<String>) doc.get("Reservations"), doc.getString("FullName"), doc.getString("Email"), doc.getString("Address"), doc.getString("Phone")));
                 allGood = validationPassword();
                 System.out.println("Username encontrado: " + doc.getString("Username") + ". En " + resultados.size() + " resultados.");
                 viewLogin.lbErrorUsername.setText(" ");
@@ -181,8 +183,12 @@ public class LoginController implements ActionListener {
             viewLogin.setVisible(false);
         } else if (e.getSource() == viewLogin.btnSignIn) {
             if (validationUser()) {
+                viewLogin.dispose();
+                CheckFinishStepInterfaz cfsi = new CheckFinishStepInterfaz();
+                CheckFinishStepController cfsc = new CheckFinishStepController(rooms, modelClient, true, cfsi);
+
                 modelClient.login();
-                viewLogin.setVisible(false);
+                cfsc.iniciarView();
             }
         } else if (e.getSource() == viewLogin.btnForgotPassword) {
             validationGiveCredentials();
