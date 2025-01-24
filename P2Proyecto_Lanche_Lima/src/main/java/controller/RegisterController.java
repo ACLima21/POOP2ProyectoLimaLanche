@@ -197,7 +197,9 @@ public class RegisterController implements ActionListener {
     }
 
     public void signIn() {
-        LoginController loginController = new LoginController(viewRegister, rooms);
+        LoginInterfaz li = new LoginInterfaz();
+        Client clientForNow = new Client("", "", null, "", "", "", "");
+        LoginController loginController = new LoginController(li, viewRegister, clientForNow, rooms);
         loginController.iniciarView();
     }
 
