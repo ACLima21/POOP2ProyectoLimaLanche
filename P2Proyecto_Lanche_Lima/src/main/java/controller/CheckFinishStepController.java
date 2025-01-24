@@ -70,6 +70,7 @@ public class CheckFinishStepController implements ActionListener {
         checkFinishStepInterfaz.btnSearch.setEnabled(false);
         DefaultTableModel tableModel = (DefaultTableModel) checkFinishStepInterfaz.tbReservationResume.getModel();
         tableModel.setRowCount(0);//Limpia todas las filas de la tabla
+        totalToPay();
 
         checkFinishStepInterfaz.lbTitleForReservation.setText("Resumen de la reserva - " + client.getUsername());
 //RoomType,Capacity,PricePerNight, DateRangeReservations, DateRangeReservations, costo total
